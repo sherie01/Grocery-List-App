@@ -125,18 +125,27 @@
  
  ul {
     list-style-type: none;
-    padding: 50px;
-    align-items: left;
- }
- 
- li {
+    padding: 0; /* Remove default padding */
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Space between grid items */
+}
+
+li {
     background: #ffffff9f;
-    margin: 5px 0;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
- }
+    flex-direction: column; /* Stack contents vertically */
+    justify-content: space-between; /* Space out elements */
+    align-items: flex-start; /* Align items to the start */
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+li:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
  
  .sorting {
     align-items: center;
@@ -166,6 +175,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    max-width: 100px;
  }
  
  .delete:hover {
@@ -180,6 +190,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    max-width: 100px;
  }
  
  .edit:hover {
@@ -205,6 +216,14 @@
  
     #app {
        padding: 10px; /* Less padding on mobile */
+    }
+
+    ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
+    }
+
+    li {
+        padding: 15px; /* Increase padding on smaller screens */
     }
  }
  

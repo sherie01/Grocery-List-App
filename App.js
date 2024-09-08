@@ -1,6 +1,7 @@
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUser = null;
 let groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
+let editingItemId = null; // To track the item being edited
 
 // Authentication
 document.getElementById('auth-form').addEventListener('submit', function (e) {
@@ -52,6 +53,7 @@ const btn = document.getElementById("add-item-button");
 const span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
+    editingItemId = null; // Reset editing ID when opening the modal for adding
     modal.style.display = "block";
 }
 
@@ -79,11 +81,10 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
     const category = document.getElementById('category').value;
     const image = document.getElementById('image').files[0];
 
-    // Convert image to Base64
     const reader = new FileReader();
     reader.onloadend = function () {
         const item = {
-            id: Date.now(),
+            id: editingItemId ? editingItemId : Date.now(), // Use existing ID if editing
             productName,
             brand,
             price: parseFloat(price), // Ensure price is a number
@@ -94,11 +95,18 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
             image: reader.result // Store Base64 string
         };
 
-        groceryItems.push(item);
+        if (editingItemId) {
+            // Update existing item
+            groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
+        } else {
+            // Add new item
+            groceryItems.push(item);
+        }
+
         localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
         loadGroceryList();
         document.getElementById('add-item-form').reset();
-        modal.style.display = "none"; // Hide modal after adding
+        modal.style.display = "none"; // Hide modal after adding/editing
     };
 
     if (image) {
@@ -144,11 +152,8 @@ function loadGroceryList() {
         li.innerHTML = `
             <div>
                 <strong>${item.productName}</strong> (${item.category})<br>
-                Brand: ${item.brand}, <br>
-                Price: ₱${item.price}, <br>
-                Weight: ${item.weight}, <br>
-                Quantity: ${item.quantity}, <br>
-                Store: ${item.store} <br>
+                Price: ₱${item.price} <br>
+                Quantity: ${item.quantity} <br>
                 ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="50">` : ''}
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
@@ -168,6 +173,7 @@ function editItem(id) {
     const item = groceryItems.find(item => item.id === id);
     if (!item) return;
 
+    // Populate the modal with the item's data
     document.getElementById('product-name').value = item.productName;
     document.getElementById('brand').value = item.brand;
     document.getElementById('price').value = item.price;
@@ -176,6 +182,9 @@ function editItem(id) {
     document.getElementById('store').value = item.store;
     document.getElementById('category').value = item.category;
 
-    // Remove the item from the list for editing
-    removeItem(id);
+    // Set the editing item ID
+    editingItemId = id;
+
+    // Open the modal
+    modal.style.display = "block";
 }
