@@ -46,6 +46,27 @@ document.getElementById('register-form').addEventListener('submit', function (e)
     document.getElementById('auth').style.display = 'block';
 });
 
+// Toggle Modal
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("add-item-button");
+const span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Close the modal when the user clicks on <span> (x)
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal when the user clicks anywhere outside of the modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 // Grocery List Management
 document.getElementById('add-item-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -77,6 +98,7 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
         localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
         loadGroceryList();
         document.getElementById('add-item-form').reset();
+        modal.style.display = "none"; // Hide modal after adding
     };
 
     if (image) {

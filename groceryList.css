@@ -2,130 +2,209 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
+ }
+ 
+ body {
     background-color: rgba(11, 230, 11, 0.671);
     padding: 10px;
-}
-
-#app {
+ }
+ 
+ .container {
     max-width: 800px;
     margin: auto;
     padding: 20px;
     border-radius: 5px;
-}
-
-
-.img {
+ }
+ 
+ .img {
     text-align: center;
-}
-
-img {
+ }
+ 
+ img {
     max-width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
     filter: drop-shadow(3px 5px 5px rgb(48, 46, 46));
-}
-
-h1 {
+ }
+ 
+ h1 {
     color: rgb(0, 0, 0);
     font-size: 2.5rem; /* Responsive font size */
     text-align: center;
     padding: 50px;
-}
-
-h2 {
+ }
+ 
+ h2 {
     color: rgb(0, 0, 0);
     font-family: italic;
     font-size: 1.5rem; /* Responsive font size */
     text-align: center;
     padding-bottom: 10px;
-}
-
-
-form {
+ }
+ /* Modal Styles */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+ }
+ 
+ .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+    max-width: 300px;
+ }
+ 
+ .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+ }
+ 
+ .close:hover,
+ .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+ }
+ 
+ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-input, select, button {
+ }
+ 
+ input,
+ select,
+ button {
     margin: 5px 0;
     padding: 10px;
     width: 100%; /* Full width for inputs */
     max-width: 300px; /* Limit max width */
+ }
+ 
+ /* Responsive Add Item Button */
+#add-item-button {
+    padding: 10px;
+    width: 100%; /* Full width for button */
+    max-width: 300px; /* Limit max width */
+    margin: 20px auto; /* Center the button */
+    display: block; /* Ensure it's a block element */
+    background-color: #28a745; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
-button {
+#add-item-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+
+ button {
     cursor: pointer;
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
-}
-
-button:hover {
+ }
+ 
+ button:hover {
     background-color: #218838;
-}
-
-ul {
+ }
+ 
+ ul {
     list-style-type: none;
     padding: 50px;
     align-items: left;
-}
-
-li {
+ }
+ 
+ li {
     background: #ffffff9f;
     margin: 5px 0;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.delete {
+ }
+ 
+ .sorting {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+ }
+ 
+ #filter-category {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%; /* Full width for inputs */
+    max-width: 300px; /* Limit max width */
+ }
+ 
+ #sort-category {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%; /* Full width for inputs */
+    max-width: 300px; /* Limit max width */
+ }
+ 
+ .delete {
     background: #dc3545;
     border: none;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.delete:hover {
+ }
+ 
+ .delete:hover {
     background: #c82333;
-    color: black
-}
-
-.edit{
+    color: black;
+ }
+ 
+ .edit {
     background: rgba(0, 128, 0, 0.66);
     border: none;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.edit:hover {
+ }
+ 
+ .edit:hover {
     background: rgb(27, 203, 27);
-    color: black
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
+    color: black;
+ }
+ 
+ /* Responsive Design */
+ @media (max-width: 600px) {
     h1 {
-        font-size: 2rem; /* Smaller font size for mobile */
+       font-size: 2rem; /* Smaller font size for mobile */
     }
-
+ 
     h2 {
-        font-size: 1.25rem; /* Smaller font size for mobile */
+       font-size: 1.25rem; /* Smaller font size for mobile */
     }
-
-    input, select, button {
-        max-width: 100%; /* Full width on mobile */
+ 
+    input,
+    select,
+    button {
+       max-width: 100%; /* Full width on mobile */
     }
-
+ 
     #app {
-        padding: 10px; /* Less padding on mobile */
+       padding: 10px; /* Less padding on mobile */
     }
-}
+ }
+ 

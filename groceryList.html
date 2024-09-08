@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery List App</title>
     <link rel="stylesheet" href="groceryList.css">
+    
 </head>
 <body>
-    <div id="app">
+    <div class="container">
         <div class="img">
             <img src="grocery.png" alt="logo">
         </div>
@@ -31,36 +32,46 @@
         </div>
         <div id="grocery-list" style="display: none;">
             <h2>Your Grocery List</h2>
-            <form id="add-item-form">
-                <input type="text" id="product-name" placeholder="Product Name" required>
-                <input type="text" id="brand" placeholder="Brand" required>
-                <input type="number" id="price" placeholder="Price" required>
-                <input type="text" id="weight" placeholder="Weight/Volume" required>
-                <input type="number" id="quantity" placeholder="Quantity" required>
-                <input type="text" id="store" placeholder="Store" required>
-                <input type="file" id="image" accept="image/*">
-                <select id="category">
+            <button id="add-item-button">Add Item</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Add Grocery Item</h2>
+                    <form id="add-item-form">
+                        <input type="text" id="product-name" placeholder="Product Name" required>
+                        <input type="text" id="brand" placeholder="Brand" required>
+                        <input type="number" id="price" placeholder="Price" required>
+                        <input type="text" id="weight" placeholder="Weight/Volume" required>
+                        <input type="number" id="quantity" placeholder="Quantity" required>
+                        <input type="text" id="store" placeholder="Store" required>
+                        <input type="file" id="image" accept="image/*">
+                        <select id="category">
+                            <option value="Fruit">Fruit</option>
+                            <option value="Vegetable">Vegetable</option>
+                            <option value="Dairy">Dairy</option>
+                        </select>
+                        <button type="submit">Add Item</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="sorting">
+                <label for="filter-category">Filter by Category:</label>
+                <select id="filter-category">
+                    <option value="All">All</option>
                     <option value="Fruit">Fruit</option>
                     <option value="Vegetable">Vegetable</option>
                     <option value="Dairy">Dairy</option>
+                </select> <br>
+                <label for="sort-category">Sort by:</label>
+                <select id="sort-category">
+                    <option value="name">Product Name</option>
+                    <option value="price">Price</option>
+                    <option value="store">Store</option>
                 </select>
-                <button type="submit">Add Item</button>
-            </form>
-            <!-- Category Filter -->
-            <label for="filter-category">Filter by Category:</label>
-            <select id="filter-category">
-                <option value="All">All</option>
-                <option value="Fruit">Fruit</option>
-                <option value="Vegetable">Vegetable</option>
-                <option value="Dairy">Dairy</option>
-            </select>
-            <!-- Sorting Options -->
-            <label for="sort-category">Sort by:</label>
-            <select id="sort-category">
-                <option value="name">Product Name</option>
-                <option value="price">Price</option>
-                <option value="store">Store</option>
-            </select>
+            </div>
             <ul id="list"></ul>
         </div>
     </div>
