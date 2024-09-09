@@ -2,9 +2,9 @@
 <h2> Overview </h2>
 <p> The Grocery List App is a web application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
-Key Components
-1. HTML Structure
-The HTML file (index.html) contains the main structure of the application, including:
+<h2 > Key Components </h2>
+<h2> 1. HTML Structure </h2>
+<p> The HTML file (index.html) contains the main structure of the application, including: </p>
 
 Authentication Forms: For user login and registration.
 Grocery List Section: Displays the user's grocery items.
