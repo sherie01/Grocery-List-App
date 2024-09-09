@@ -151,15 +151,30 @@ function loadGroceryList() {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
+                <input type="checkbox" class="item-check" id="check-${item.id}">
                 ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="100">` : ''} <br>
-                <strong>${item.productName}</strong> (${item.category})<br>
-                Price: ₱${item.price} <br>
-                Quantity: ${item.quantity} <br>
-               
+                <strong class="item-name">${item.productName}</strong><br>
+                <span class="item-price">Price: ₱${item.price}</span><br>
+                <span class="item-store">Store: ${item.store}</span><br>
+                <span class="item-quantity">Quantity: ${item.quantity}</span><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
         `;
+
+        // Add event listener for the checkbox
+        const checkbox = li.querySelector('.item-check');
+        checkbox.addEventListener('change', function () {
+            const itemDetails = li.querySelectorAll('.item-name, .item-price, .item-store, .item-quantity');
+            itemDetails.forEach(detail => {
+                if (this.checked) {
+                    detail.style.textDecoration = 'line-through'; // Add strikethrough
+                } else {
+                    detail.style.textDecoration = 'none'; // Remove strikethrough
+                }
+            });
+        });
+
         list.appendChild(li);
     });
 }
@@ -189,3 +204,30 @@ function editItem(id) {
     // Open the modal
     modal.style.display = "block";
 }
+
+document.getElementById('search-bar').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const list = document.getElementById('list');
+    list.innerHTML = '';
+
+    // Filter items based on search term
+    const filteredItems = groceryItems.filter(item => item.productName.toLowerCase().includes(searchTerm));
+
+    // Display filtered items
+    filteredItems.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <div>
+                <input type="checkbox" class="item-check" id="check-${item.id}">
+                ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="100">` : ''} <br>
+                <strong class="item-name">${item.productName}</strong><br>
+                <span class="item-price">Price: ₱${item.price}</span><br>
+                <span class="item-store">Store: ${item.store}</span><br>
+                <span class="item-quantity">Quantity: ${item.quantity}</span><br>
+            </div>
+            <button class="edit" onclick="editItem(${item.id})">Edit</button>
+            <button class="delete" onclick="removeItem(${item.id})">Remove</button>
+        `;
+        list.appendChild(li);
+    });
+});

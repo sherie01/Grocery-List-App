@@ -124,33 +124,63 @@
  }
  
  ul {
-    list-style-type: none;
-    padding: 0; /* Remove default padding */
-    display: grid; /* Enable grid layout */
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
-    gap: 25px; /* Space between grid items */
+   list-style-type: none;
+   padding: 0; /* Remove default padding */
+   display: grid; /* Enable grid layout */
+   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+   gap: 25px; /* Space between grid items */
+}
+
+.checkbox {
+   float: right;
+}
+li input[type="checkbox"] {
+   margin-right: 10px; /* Space between checkbox and text */
 }
 
 li {
-    background: #ffffff9f;
-    padding: 30px;
-    display: flex;
-    flex-direction: column; /* Stack contents vertically */
-    align-items: center; /* Align items to the start */
-    border-radius: 5px; /* Add rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    transition: transform 0.2s; /* Smooth transition for hover effect */
+   background: #ffffff9f;
+   padding: 20px; /* Adjust padding for uniformity */
+   display: flex;
+   flex-direction: column; /* Stack contents vertically */
+   align-items: center; /* Center items horizontally */
+   text-align: center; /* Center text */
+   border-radius: 5px; /* Add rounded corners */
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+   transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+li img {
+   max-width: 100px; /* Set a fixed width for images */
+   height: 100px; 
+   margin-bottom: 10px; /* Space between image and text */
+}
+
+li .product-name,
+li .product-price,
+li .product-quantity {
+   margin: 5px 0; /* Uniform margin for text elements */
+}
+
+li button {
+   margin: 5px; /* Space between buttons */
+   padding: 5px 10px; /* Padding for buttons */
+   width: 80%; /* Set width for buttons */
+   max-width: 100px; /* Limit max width */
 }
 
 li:hover {
-    transform: scale(1.05); /* Scale up on hover */
+   transform: scale(1.02); /* Scale up on hover */
 }
+
  
  .sorting {
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 40px;
+    margin-bottom: 2rem;
+    
  }
  
  #filter-category {
@@ -167,6 +197,28 @@ li:hover {
     max-width: 300px; /* Limit max width */
  }
  
+.search-container {
+   position: relative;
+   width: 100%; /* Full width for the container */
+   max-width: 300px; /* Limit max width */
+}
+
+#search-bar {
+   margin: 20px 0;
+   padding: 10px 40px 10px 10px; /* Add padding to accommodate the icon */
+   width: 100%; /* Full width for inputs */
+   max-width: 300px; /* Limit max width */
+}
+
+.search-icon {
+   position: absolute;
+   right: 10px; /* Position the icon inside the input */
+   top: 50%; /* Center the icon vertically */
+   transform: translateY(-50%); /* Adjust for vertical centering */
+   color: gray; /* Change color as needed */
+   pointer-events: none; /* Prevent clicks on the icon */
+}
+
  .delete {
     background: #dc3545;
     border: none;
@@ -179,7 +231,7 @@ li:hover {
  
  .delete:hover {
     background: #c82333;
-    color: black;
+    color: rgb(255, 255, 255);
  }
  
  .edit {
