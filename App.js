@@ -20,6 +20,7 @@ document.getElementById('auth-form').addEventListener('submit', function (e) {
     }
 });
 
+// Toggle between login and register forms
 document.getElementById('toggle-auth').addEventListener('click', function () {
     document.getElementById('auth').style.display = 'none';
     document.getElementById('register').style.display = 'block';
@@ -30,6 +31,7 @@ document.getElementById('toggle-auths').addEventListener('click', function () {
     document.getElementById('register').style.display = 'none';
 });
 
+// Registration
 document.getElementById('register-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const username = document.getElementById('new-username').value;
@@ -47,29 +49,27 @@ document.getElementById('register-form').addEventListener('submit', function (e)
     document.getElementById('auth').style.display = 'block';
 });
 
-// Toggle Modal
-const modal = document.getElementById("myModal");
-const btn = document.getElementById("add-item-button");
-const span = document.getElementsByClassName("close")[0];
+// Add Item Modal
+const addItemModal = document.getElementById("addItemModal");
+const addBtn = document.getElementById("add-item-button");
 
-btn.onclick = function() {
+addBtn.onclick = function() {
     editingItemId = null; // Reset editing ID when opening the modal for adding
-    modal.style.display = "block";
+    addItemModal.style.display = "block";
 }
 
-// Close the modal when the user clicks on <span> (x)
-span.onclick = function() {
-    modal.style.display = "none";
+// Close Add Item Modal
+function closeAddItemModal() {
+    addItemModal.style.display = "none";
 }
 
-// Close the modal when the user clicks anywhere outside of the modal
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+// Close Edit Item Modal
+function closeEditItemModal() {
+    document.getElementById('edit-item-form').reset(); // Reset the form
+    document.getElementById('editItemModal').style.display = "none";
 }
 
-// Grocery List Management
+// Grocery List Management for Adding Item
 document.getElementById('add-item-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const productName = document.getElementById('product-name').value;
@@ -84,7 +84,7 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
     const reader = new FileReader();
     reader.onloadend = function () {
         const item = {
-            id: editingItemId ? editingItemId : Date.now(), // Use existing ID if editing
+            id: Date.now(), // New ID for new items
             productName,
             brand,
             price: parseFloat(price), // Ensure price is a number
@@ -95,18 +95,11 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
             image: reader.result // Store Base64 string
         };
 
-        if (editingItemId) {
-            // Update existing item
-            groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
-        } else {
-            // Add new item
-            groceryItems.push(item);
-        }
-
+        groceryItems.push(item);
         localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
         loadGroceryList();
-        document.getElementById('add-item-form').reset();
-        modal.style.display = "none"; // Hide modal after adding/editing
+        closeAddItemModal(); // Hide modal after adding
+        document.getElementById('add-item-form').reset(); // Reset the form after adding
     };
 
     if (image) {
@@ -116,21 +109,53 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
     }
 });
 
-// Filtering functionality
-document.getElementById('filter-category').addEventListener('change', function () {
-    loadGroceryList();
+// Grocery List Management for Editing Item
+document.getElementById('edit-item-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const productName = document.getElementById('edit-product-name').value;
+    const brand = document.getElementById('edit-brand').value;
+    const price = document.getElementById('edit-price').value;
+    const weight = document.getElementById('edit-weight').value;
+    const quantity = document.getElementById('edit-quantity').value;
+    const store = document.getElementById('edit-store').value;
+    const category = document.getElementById('edit-category').value;
+    const image = document.getElementById('edit-image').files[0];
+
+    const reader = new FileReader();
+    reader.onloadend = function () {
+        const item = {
+            id: editingItemId, // Keep the same ID
+            productName,
+            brand,
+            price: parseFloat(price), // Ensure price is a number
+            weight,
+            quantity,
+            store,
+            category,
+            image: image ? reader.result : groceryItems.find(i => i.id === editingItemId).image // Retain old image if new one is not uploaded
+        };
+
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
+        loadGroceryList();
+        closeEditItemModal(); // Hide modal after editing
+    };
+
+    if (image) {
+        reader.readAsDataURL(image); // Convert to Base64
+    } else {
+        closeEditItemModal(); // Hide modal without saving changes
+    }
 });
 
-// Sorting functionality
-document.getElementById('sort-category').addEventListener('change', function () {
-    loadGroceryList();
-});
-
+// Load Grocery List
 function loadGroceryList() {
     const list = document.getElementById('list');
+    list.innerHTML = '';
+
+    // Get filter and sort values
     const filterValue = document.getElementById('filter-category').value;
     const sortValue = document.getElementById('sort-category').value;
-    list.innerHTML = '';
 
     // Filter items
     let filteredItems = groceryItems.filter(item => {
@@ -151,75 +176,84 @@ function loadGroceryList() {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
-                <input type="checkbox" class="item-check" id="check-${item.id}">
-                ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="100">` : ''} <br>
-                <strong class="item-name">${item.productName}</strong><br>
-                <span class="item-price">Price: ₱${item.price}</span><br>
-                <span class="item-store">Store: ${item.store}</span><br>
-                <span class="item-quantity">Quantity: ${item.quantity}</span><br>
+                <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})">
+                ${item.image ? `<img src="${item.image}" alt="${item.productName}" style="max-width: 100px; max-height: 100px;">` : ''} <br>
+                <strong class="item-name" id="name-${item.id}">${item.productName}</strong><br>
+                <span class="item-price" id="price-${item.id}">Price: ₱${item.price}</span><br>
+                <span class="item-store" id="store-${item.id}">Store: ${item.store}</span><br>
+                <span class="item-quantity" id="quantity-${item.id}">Quantity: ${item.quantity}</span><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
         `;
 
-        // Add event listener for the checkbox
-        const checkbox = li.querySelector('.item-check');
-        checkbox.addEventListener('change', function () {
-            const itemDetails = li.querySelectorAll('.item-name, .item-price, .item-store, .item-quantity');
-            itemDetails.forEach(detail => {
-                if (this.checked) {
-                    detail.style.textDecoration = 'line-through'; // Add strikethrough
-                } else {
-                    detail.style.textDecoration = 'none'; // Remove strikethrough
-                }
-            });
-        });
-
         list.appendChild(li);
     });
 }
 
+// Toggle Strike Through
+function toggleStrikeThrough(checkbox, id) {
+    const nameElement = document.getElementById(`name-${id}`);
+    const priceElement = document.getElementById(`price-${id}`);
+    const storeElement = document.getElementById(`store-${id}`);
+    const quantityElement = document.getElementById(`quantity-${id}`);
+
+    if (checkbox.checked) {
+        nameElement.style.textDecoration = "line-through";
+        priceElement.style.textDecoration = "line-through";
+        storeElement.style.textDecoration = "line-through";
+        quantityElement.style.textDecoration = "line-through";
+    } else {
+        nameElement.style.textDecoration = "none";
+        priceElement.style.textDecoration = "none";
+        storeElement.style.textDecoration = "none";
+        quantityElement.style.textDecoration = "none";
+    }
+}
+
+
+// Remove Item
 function removeItem(id) {
     groceryItems = groceryItems.filter(item => item.id !== id);
     localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
     loadGroceryList();
 }
 
+// Edit Item
 function editItem(id) {
     const item = groceryItems.find(item => item.id === id);
     if (!item) return;
 
-    // Populate the modal with the item's data
-    document.getElementById('product-name').value = item.productName;
-    document.getElementById('brand').value = item.brand;
-    document.getElementById('price').value = item.price;
-    document.getElementById('weight').value = item.weight;
-    document.getElementById('quantity').value = item.quantity;
-    document.getElementById('store').value = item.store;
-    document.getElementById('category').value = item.category;
+    // Populate the edit modal with the item's data
+    document.getElementById('edit-product-name').value = item.productName;
+    document.getElementById('edit-brand').value = item.brand;
+    document.getElementById('edit-price').value = item.price;
+    document.getElementById('edit-weight').value = item.weight;
+    document.getElementById('edit-quantity').value = item.quantity;
+    document.getElementById('edit-store').value = item.store;
+    document.getElementById('edit-category').value = item.category;
 
     // Set the editing item ID
     editingItemId = id;
 
-    // Open the modal
-    modal.style.display = "block";
+    // Open the edit modal
+    document.getElementById('editItemModal').style.display = "block";
 }
 
+// Search Functionality
 document.getElementById('search-bar').addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
     const list = document.getElementById('list');
     list.innerHTML = '';
 
-    // Filter items based on search term
     const filteredItems = groceryItems.filter(item => item.productName.toLowerCase().includes(searchTerm));
 
-    // Display filtered items
     filteredItems.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
                 <input type="checkbox" class="item-check" id="check-${item.id}">
-                ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="100">` : ''} <br>
+                ${item.image ? `<img src="${item.image}" alt="${item.productName}" style="max-width: 100px; max-height: 100px;">` : ''} <br>
                 <strong class="item-name">${item.productName}</strong><br>
                 <span class="item-price">Price: ₱${item.price}</span><br>
                 <span class="item-store">Store: ${item.store}</span><br>
@@ -231,3 +265,16 @@ document.getElementById('search-bar').addEventListener('input', function() {
         list.appendChild(li);
     });
 });
+
+// Filter and Sorting Event Listeners
+document.getElementById('filter-category').addEventListener('change', loadGroceryList);
+document.getElementById('sort-category').addEventListener('change', loadGroceryList);
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target == addItemModal) {
+        closeAddItemModal();
+    } else if (event.target == document.getElementById('editItemModal')) {
+        closeEditItemModal();
+    }
+};

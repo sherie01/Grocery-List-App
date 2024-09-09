@@ -23,7 +23,7 @@
  img {
     max-width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
-    filter: drop-shadow(2px 2px 5px rgba(48, 46, 46, 0.559));
+    filter: drop-shadow(1px 1px 5px rgba(48, 46, 46, 0.307));
  }
  
  h1 {
@@ -134,6 +134,24 @@
 .checkbox {
    float: right;
 }
+#list {
+   list-style-type: none;
+   padding: 0;
+}
+
+#list li {
+   margin: 10px 0;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   display: flex;
+   align-items: center;
+}
+
+.item-check {
+   margin-right: 10px;
+}
+
 li input[type="checkbox"] {
    margin-right: 10px; /* Space between checkbox and text */
 }

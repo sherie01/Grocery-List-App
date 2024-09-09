@@ -33,10 +33,11 @@
         <div id="grocery-list" style="display: none;">
             <h2>Your Grocery List</h2>
             <button id="add-item-button">Add Item</button>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
+
+            <!-- Add Item Modal -->
+            <div id="addItemModal" class="modal">
                 <div class="modal-content">
-                    <span class="close">&times;</span>
+                    <span class="close" onclick="closeAddItemModal()">&times;</span>
                     <h2>Add Grocery Item</h2>
                     <form id="add-item-form">
                         <input type="text" id="product-name" placeholder="Product Name" required>
@@ -52,6 +53,29 @@
                             <option value="Dairy">Dairy</option>
                         </select>
                         <button type="submit">Add Item</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Edit Item Modal -->
+            <div id="editItemModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEditItemModal()">&times;</span>
+                    <h2>Edit Grocery Item</h2>
+                    <form id="edit-item-form">
+                        <input type="text" id="edit-product-name" placeholder="Product Name" required>
+                        <input type="text" id="edit-brand" placeholder="Brand" required>
+                        <input type="number" id="edit-price" placeholder="Price" required>
+                        <input type="text" id="edit-weight" placeholder="Weight/Volume" required>
+                        <input type="number" id="edit-quantity" placeholder="Quantity" required>
+                        <input type="text" id="edit-store" placeholder="Store" required>
+                        <input type="file" id="edit-image" accept="image/*">
+                        <select id="edit-category">
+                            <option value="Fruit">Fruit</option>
+                            <option value="Vegetable">Vegetable</option>
+                            <option value="Dairy">Dairy</option>
+                        </select>
+                        <button type="submit">Save Changes</button>
                     </form>
                 </div>
             </div>
@@ -74,24 +98,13 @@
                 
                 <div class="search-container">
                     <input type="text" id="search-bar" placeholder="Search by name...">
-                    <i class="fas fa-search search-icon"></i> <!-- Font Awesome search icon -->
+                    <i class="fas fa-search search-icon"></i>
                 </div>
             </div>
             
-            
             <ul id="list">
-                <li>
-                    <div class="checkbox"><input type="checkbox" class="item-check" id="check-1"> </div>
-                    <img src="image-url.jpg" alt="Product Name">
-                    <div class="product-name"><strong>Banana</strong> (Fruit)</div>
-                    <div class="product-price">Price: ₱50</div>
-                    <div class="product-quantity">Quantity: 5</div>
-                    <button class="edit">Edit</button>
-                    <button class="delete">Remove</button>
-                </li>
-                <!-- Repeat for other products -->
+                <!-- Grocery items will be dynamically added here -->
             </ul>
-            
         </div>
     </div>
     <script src="app.js"></script>
