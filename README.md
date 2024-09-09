@@ -6,14 +6,15 @@
 <h2> 1. HTML Structure </h2>
 <p> The HTML file (index.html) contains the main structure of the application, including: </p>
 
-Authentication Forms: For user login and registration.
+<p > Authentication Forms: For user login and registration.
 Grocery List Section: Displays the user's grocery items.
-Modals: For adding and editing grocery items.
-2. CSS Styles
-The CSS file (groceryList.css) styles the application, providing a responsive layout and visual effects (e.g., hover effects, modal styles).
+Modals: For adding and editing grocery items. </p>
 
-3. JavaScript Logic
-The JavaScript file (app.js) handles the core functionality, including:
+<h2> 2. CSS Styles </h2>
+<p> The CSS file (groceryList.css) styles the application, providing a responsive layout and visual effects (e.g., hover effects, modal styles). </p>
+
+<h2> 3. JavaScript Logic </h2>
+<p> The JavaScript file (app.js) handles the core functionality, including: </p>
 
 User authentication
 CRUD (Create, Read, Update, Delete) operations for grocery items
