@@ -23,7 +23,7 @@
  img {
     max-width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
-    filter: drop-shadow(3px 5px 5px rgb(48, 46, 46));
+    filter: drop-shadow(2px 2px 5px rgba(48, 46, 46, 0.559));
  }
  
  h1 {
@@ -133,11 +133,10 @@
 
 li {
     background: #ffffff9f;
-    padding: 10px;
+    padding: 30px;
     display: flex;
     flex-direction: column; /* Stack contents vertically */
-    justify-content: space-between; /* Space out elements */
-    align-items: flex-start; /* Align items to the start */
+    align-items: center; /* Align items to the start */
     border-radius: 5px; /* Add rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     transition: transform 0.2s; /* Smooth transition for hover effect */
@@ -172,10 +171,10 @@ li:hover {
     background: #dc3545;
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 2px 2px;
     border-radius: 5px;
     cursor: pointer;
-    max-width: 100px;
+    max-width: 60px;
  }
  
  .delete:hover {
@@ -187,10 +186,10 @@ li:hover {
     background: rgba(0, 128, 0, 0.66);
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 2px 2px;
     border-radius: 5px;
     cursor: pointer;
-    max-width: 100px;
+    max-width: 60px;
  }
  
  .edit:hover {

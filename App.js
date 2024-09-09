@@ -151,10 +151,11 @@ function loadGroceryList() {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
+                ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="100">` : ''} <br>
                 <strong>${item.productName}</strong> (${item.category})<br>
                 Price: ₱${item.price} <br>
                 Quantity: ${item.quantity} <br>
-                ${item.image ? `<img src="${item.image}" alt="${item.productName}" width="50">` : ''}
+               
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
