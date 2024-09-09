@@ -23,14 +23,14 @@
 
 <h2> User Manual </h2>
 <h2> Getting Started </h2>
-<p> 1. Accessing the App: Open the index.html file in a web browser. </p> 
-<p> 2. Registering a New User: </p>
+<h2> 1. Accessing the App: </h2> <p> Open the index.html file in a web browser. </p> 
+<h2> 2. Registering a New User: </h2>
 <p> * Click on "Switch to Register". </p> 
 <p> * Fill in the username and password fields. </p> 
 <p> * Click "Register". If the username already exists, an alert will notify you. </p> <br>
 
 <h2> 3. Logging In: </h2>
-<p> * Enter your username and password. </p> <br>
+<p> * Enter your username and password. </p>
 <p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p>
 
 <h2> Using the Grocery List </h2>
