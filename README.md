@@ -19,7 +19,7 @@
 <p>* User authentication <br>
 * CRUD (Create, Read, Update, Delete) operations for grocery items <br>
 * Filtering and sorting of items 
-* Search functionality </p> 
+* Search functionality </p> <br>
 
 <h2> User Manual </h2>
 <h2> Getting Started </h2>
@@ -31,27 +31,31 @@
 
 <h2> 3. Logging In: </h2>
 <p> * Enter your username and password. </p> <br>
-<p> * </p>Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p>
+<p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p>
 
 <h2> Using the Grocery List </h2>
 <h2> 1. Adding Items: </h2>
-Click on the "Add Item" button.
-Fill in the product details (name, brand, price, weight, quantity, store, category).
-Optionally, upload an image.
-Click "Add Item" to save it to your grocery list.
-Editing Items:
+<p> * Click on the "Add Item" button. </p>
+<p> * Fill in the product details (name, brand, price, weight, quantity, store, category). </p>
+<p> * Optionally, upload an image. </p>
+<p> * Click "Add Item" to save it to your grocery list. </p>
 
-Click the "Edit" button next to the item you wish to modify.
-Update the desired fields and click "Save Changes".
-Removing Items:
+<h2> 2. Editing Items: </h2>
+<p> * Click the "Edit" button next to the item you wish to modify. </p>
+<p> * Update the desired fields and click "Save Changes". </p>
 
-Click the "Remove" button next to the item you wish to delete. The item will be removed from your list.
-Filtering and Sorting:
+<h2> 3. Removing Items: </h2>
+<p> * Click the "Remove" button next to the item you wish to delete. The item will be removed from your list. </p>
 
-Use the filters to view specific categories (e.g., Fruit, Vegetable, Dairy).
-Sort items by name, price, or store.
-Searching for Items:
+<h2> 4. Filtering and Sorting:  </h2>
+<p> * Use the filters to view specific categories (e.g., Fruit, Vegetable, Dairy). </p>
+<p> * Sort items by name, price, or store. </p>
 
-Use the search bar to find items by name. As you type, the list will update to show matching items.
-Logging Out
-To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list.
+<h2> 5. Searching for Items: </h2>
+<p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
+
+<h2> Logging Out </h2>
+<p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p>
+
+<h2>Conclusion</h2>
+<p> This documentation provides a comprehensive overview of the Grocery List App, including its structure, key functions, and user instructions. For any additional questions or improvements, feel free to reach out! </p>
