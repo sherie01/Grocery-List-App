@@ -6,8 +6,8 @@
 <h2> 1. HTML Structure </h2>
 <p> The HTML file (index.html) contains the main structure of the application, including: </p>
 
-<p > Authentication Forms: For user login and registration.
- Grocery List Section: Displays the user's grocery items.
+<p > Authentication Forms: For user login and registration. <br>
+ Grocery List Section: Displays the user's grocery items. <br>
  Modals: For adding and editing grocery items. </p>
 
 <h2> 2. CSS Styles </h2>
