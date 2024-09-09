@@ -31,7 +31,7 @@
 
 <h2> 3. Logging In: </h2>
 <p> * Enter your username and password. </p>
-<p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p>
+<p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p> <br> <br>
 
 <h2> Using the Grocery List </h2>
 <h2> 1. Adding Items: </h2>
