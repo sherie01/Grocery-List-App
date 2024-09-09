@@ -18,15 +18,15 @@
 
 <p>* User authentication <br>
 * CRUD (Create, Read, Update, Delete) operations for grocery items <br>
-* Filtering and sorting of items <br>
-* Search functionality </p> <br>
+* Filtering and sorting of items 
+* Search functionality </p> 
 
 <h2> User Manual </h2>
 <h2> Getting Started </h2>
 <p> 1. Accessing the App: Open the index.html file in a web browser. </p> 
 <p> 2. Registering a New User: </p>
-<p> * Click on "Switch to Register". </p> <br>
-<p> * Fill in the username and password fields. </p> <br>
+<p> * Click on "Switch to Register". </p> 
+<p> * Fill in the username and password fields. </p> 
 <p> * Click "Register". If the username already exists, an alert will notify you. </p> <br>
 
 <h2> 3. Logging In: </h2>
