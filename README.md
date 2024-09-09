@@ -16,7 +16,7 @@ Modals: For adding and editing grocery items. </p>
 <h2> 3. JavaScript Logic </h2>
 <p> The JavaScript file (app.js) handles the core functionality, including: </p>
 
-User authentication
+<p> User authentication
 CRUD (Create, Read, Update, Delete) operations for grocery items
 Filtering and sorting of items
-Search functionality
+Search functionality </p>
