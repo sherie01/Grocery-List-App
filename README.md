@@ -1,4 +1,4 @@
-# Grocery-List-App
+# Grocery-List-App 
 <h2> Overview </h2>
 <p> **The Grocery List App** is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
@@ -82,4 +82,51 @@
 <p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p> <br>
 
 <h1> Screenshot: </h1>
-<img src= "login.png" height=350 width=200>
+
+<table>
+	<thead>
+		<td>
+			<b>Login</b>
+		</td>
+		<td>
+			<b>Grocery List</b>
+		</td>
+    <td>
+			<b>Check Box</b>
+		</td>
+	</thead>
+	<tr>
+		<td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+		<td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+    <td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+	</tr>
+	<thead>
+		<td>
+			<b>Login</b>
+		</td>
+		<td>
+			<b>Grocery List</b>
+		</td>
+    <td>
+			<b>Check Box</b>
+		</td>
+	</thead>
+	<tr>
+		<td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+		<td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+    <td>
+			<img src= "login.png" height=350 width=200>
+		</td>
+	</tr>
+</table>
+
