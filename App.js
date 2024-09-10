@@ -215,7 +215,7 @@ function loadGroceryList() {
                 <strong class="item-name" id="name-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">${item.productName}</strong><br>
                 <span class="item-price" id="price-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Price: ₱${item.price}</span><br>
                 <span class="item-store" id="store-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Store: ${item.store}</span><br>
-                <span class="item-quantity" id="quantity-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Quantity: ${item.quantity}</span><br>
+                <span class="item-quantity" id="quantity-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Quantity: ${item.quantity}</span><br><br><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
