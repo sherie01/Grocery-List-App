@@ -144,62 +144,6 @@ function closeEditItemModal() {
     document.getElementById('editItemModal').style.display = "none";
 }
 
-// Grocery List Management for Editing Item
-document.getElementById('edit-item-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const productName = document.getElementById('edit-product-name').value;
-    const brand = document.getElementById('edit-brand').value;
-    const price = document.getElementById('edit-price').value;
-    const weight = document.getElementById('edit-weight').value;
-    const quantity = document.getElementById('edit-quantity').value;
-    const store = document.getElementById('edit-store').value;
-    const category = document.getElementById('edit-category').value;
-    const image = document.getElementById('edit-image').files[0];
-
-    const reader = new FileReader();
-    reader.onloadend = function () {
-        const item = {
-            id: editingItemId, // Keep the same ID
-            productName,
-            brand,
-            price: parseFloat(price), // Ensure price is a number
-            weight,
-            quantity,
-            store,
-            category,
-            image: image ? reader.result : groceryItems.find(i => i.id === editingItemId).image // Retain old image if new one is not uploaded
-        };
-
-        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
-        loadGroceryList();
-        closeEditItemModal(); // Hide modal after editing
-    };
-
-    if (image) {
-        reader.readAsDataURL(image); // Convert to Base64
-    } else {
-        // If no new image, keep the existing data and close the modal
-        const existingItem = groceryItems.find(i => i.id === editingItemId);
-        const item = {
-            id: editingItemId,
-            productName,
-            brand,
-            price: parseFloat(price),
-            weight,
-            quantity,
-            store,
-            category,
-            image: existingItem.image // Keep the old image
-        };
-
-        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
-        loadGroceryList();
-        closeEditItemModal(); // Hide modal after editing
-    }
-});
-
 // Load Grocery List
 function loadGroceryList() {
     const list = document.getElementById('list');
@@ -262,6 +206,62 @@ function removeItem(id) {
     localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
     loadGroceryList();
 }
+
+// Grocery List Management for Editing Item
+document.getElementById('edit-item-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const productName = document.getElementById('edit-product-name').value;
+    const brand = document.getElementById('edit-brand').value;
+    const price = document.getElementById('edit-price').value;
+    const weight = document.getElementById('edit-weight').value;
+    const quantity = document.getElementById('edit-quantity').value;
+    const store = document.getElementById('edit-store').value;
+    const category = document.getElementById('edit-category').value;
+    const image = document.getElementById('edit-image').files[0];
+
+    const reader = new FileReader();
+    reader.onloadend = function () {
+        const item = {
+            id: editingItemId, // Keep the same ID
+            productName,
+            brand,
+            price: parseFloat(price), // Ensure price is a number
+            weight,
+            quantity,
+            store,
+            category,
+            image: image ? reader.result : groceryItems.find(i => i.id === editingItemId).image // Retain old image if new one is not uploaded
+        };
+
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
+        loadGroceryList();
+        closeEditItemModal(); // Hide modal after editing
+    };
+
+    if (image) {
+        reader.readAsDataURL(image); // Convert to Base64
+    } else {
+        // If no new image, keep the existing data and close the modal
+        const existingItem = groceryItems.find(i => i.id === editingItemId);
+        const item = {
+            id: editingItemId,
+            productName,
+            brand,
+            price: parseFloat(price),
+            weight,
+            quantity,
+            store,
+            category,
+            image: existingItem.image // Keep the old image
+        };
+
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
+        loadGroceryList();
+        closeEditItemModal(); // Hide modal after editing
+    }
+});
 
 // Edit Item
 function editItem(id) {

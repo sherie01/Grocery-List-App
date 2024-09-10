@@ -16,15 +16,15 @@
     border-radius: 5px;
  }
  
- .img {
-    text-align: center;
- }
- 
  img {
     max-width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
     filter: drop-shadow(1px 1px 5px rgba(48, 46, 46, 0.307));
  }
+
+ .img {
+   text-align: center;
+}
  
  h1 {
     color: rgb(0, 0, 0);
@@ -94,7 +94,7 @@
  }
  
  /* Responsive Add Item Button */
-#add-item-button {
+ #add-item-button {
     padding: 10px;
     width: 100%; 
     max-width: 300px; 
@@ -107,7 +107,7 @@
     cursor: pointer; 
 }
 
-#add-item-button:hover {
+ #add-item-button:hover {
     background-color: #218838; 
 }
 
@@ -124,6 +124,7 @@
     background-color: #218838;
  }
  
+ /* -- UL -- */
  ul {
    list-style-type: none;
    padding: 0; 
@@ -132,15 +133,16 @@
    gap: 25px; /* Space between grid items */
 }
 
-.checkbox {
+ .checkbox {
    float: right;
 }
-#list {
+
+ #list {
    list-style-type: none;
    padding: 0;
 }
 
-#list li {
+ #list li {
    margin: 10px 0;
    padding: 10px;
    border: 1px solid #ccc;
@@ -149,15 +151,15 @@
    align-items: center;
 }
 
-.item-check {
+ .item-check {
    margin-right: 10px;
 }
 
-li input[type="checkbox"] {
+ li input[type="checkbox"] {
    margin-right: 10px; /* Space between checkbox and text */
 }
 
-li {
+ li {
    background: #ffffff9f;
    padding: 20px; 
    display: flex;
@@ -169,66 +171,68 @@ li {
    transition: transform 0.2s; /* Smooth transition for hover effect */
 }
 
-li img {
+ li img {
    max-width: 100px; /* Set a fixed width for images */
    height: 100px; 
    margin-bottom: 10px; /* Space between image and text */
 }
 
-li .product-name,
-li .product-price,
-li .product-quantity {
+ li .product-name,
+ li .product-price,
+ li .product-quantity {
    margin: 5px 0; /* Uniform margin for text elements */
 }
 
-li button {
+ li button {
    margin: 5px;
    padding: 5px 10px; 
    width: 80%; 
    max-width: 100px; 
 }
 
-li:hover {
+ li:hover {
    transform: scale(1.02); /* Scale up on hover */
 }
  
+
+ /* --- CATEGORY/SORTING --- */
  .sorting {
     align-items: center;
     display: flex;
     flex-direction: column;
     padding-top: 40px;
-    margin-bottom: 2rem;
-    
- }
+    margin-bottom: 2rem;   
+}
  
  #filter-category {
     margin: 5px 0;
     padding: 10px;
     width: 100%; 
     max-width: 300px;
- }
+}
  
  #sort-category {
     margin: 5px 0;
     padding: 10px;
     width: 100%; 
     max-width: 300px; 
- }
+}
  
-.search-container {
+ /* --- SEARCH BAR --- */
+ .search-container {
    position: relative;
    width: 100%; 
    max-width: 300px; 
 }
 
-#search-bar {
+ #search-bar {
    margin: 20px 0;
    padding: 10px 40px 10px 10px; /* Add padding to accommodate the icon */
    width: 100%; 
    max-width: 300px; 
 }
 
-.search-icon {
+ .search-icon {
    position: absolute;
    right: 10px; /* Position the icon inside the input */
    top: 50%; /* Center the icon vertically */
@@ -236,6 +240,7 @@ li:hover {
    color: gray; 
    pointer-events: none; /* Prevent clicks on the icon */
 }
+
 
  .delete {
     background: #dc3545;
@@ -245,12 +250,12 @@ li:hover {
     border-radius: 5px;
     cursor: pointer;
     max-width: 60px;
- }
+}
  
  .delete:hover {
     background: #c82333;
     color: rgb(255, 255, 255);
- }
+}
  
  .edit {
     background: rgba(0, 128, 0, 0.66);
@@ -260,12 +265,12 @@ li:hover {
     border-radius: 5px;
     cursor: pointer;
     max-width: 60px;
- }
+}
  
  .edit:hover {
     background: rgb(27, 203, 27);
     color: black;
- }
+}
  
  #logout-button {
    display: block; /* Make it a block element */
@@ -277,9 +282,9 @@ li:hover {
    border-radius: 5px; 
    cursor: pointer; 
    max-width: 200px; 
- }
+}
 
-#logout-button:hover {
+ #logout-button:hover {
    background-color: #c82333; 
 }
 
@@ -310,5 +315,5 @@ li:hover {
     li {
         padding: 15px; /* Increase padding on smaller screens */
     }
- }
+}
  
