@@ -22,10 +22,25 @@
 * Search functionality <br>
 * Handling checked items with strikethrough and moving them to the bottom of the list </p> <br>
 
-<h2> User Manual <br>
-Getting Started <br>
-1. Accessing the App: </h2> <p> Open the index.html file in a web browser. <br> 
-2. Registering a New User: </h2>
+
+<h2> User Manual </h2>h2
+<h3> Features </h3>
+<h2> User Authentication: </h2>
+<p> * Users can log in or register using their username and password. </p>
+
+<h2> Grocery List Management: </h2>
+<p> * Users can add grocery items with details such as product name, brand, price, and quantity. <br>
+* Users can edit or remove items from their grocery list. </p>
+
+<h2> Checked Items: </h2>
+<p> * Users can check off items that they have purchased. Checked items will have a strikethrough effect and will be moved to the bottom of the list for easy reference. </p>
+
+<h2> Filtering and Sorting: </h2>
+<p> * Users can filter items by category and sort them by name, price, or store. </p>
+
+
+1. Accessing the App: </h2> <p> Open the index.html file in a web browser. <br> </p>
+<h2> 2. Registering a New User: </h2>
 <p> * Click on "Switch to Register". <br> 
 * Fill in the username and password fields. <br> 
 * Click "Register". If the username already exists, an alert will notify you. </p> <br>
