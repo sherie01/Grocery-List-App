@@ -1,6 +1,6 @@
 # Grocery-List-App
 <h2> Overview </h2>
-<p> The Grocery List App is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
+<p> **The Grocery List App** is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
 <h2 > Key Components </h2>
 <h2> 1. HTML Structure </h2>
@@ -79,4 +79,7 @@
 <p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
 
 <h4> Logging Out </h4>
-<p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p>
+<p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p> <br>
+
+<h1> Screenshot: </h1>
+<img src= "milk.png" alt="" height=200 width=200>
