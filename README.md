@@ -75,6 +75,3 @@
 
 <h4> Logging Out </h4>
 <p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p>
-
-<h2>Conclusion</h2>
-<p> This documentation provides a comprehensive overview of the Grocery List App, including its structure, key functions, and user instructions. For any additional questions or improvements, feel free to reach out! </p>
