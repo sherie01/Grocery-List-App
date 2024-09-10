@@ -1,8 +1,8 @@
-# Grocery-List-App 
-<h2> Overview </h2>
+# Grocery-List-App 📝💗
+<h2> 👁️verview </h2>
 <p> The Grocery List App is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
-<h2 > Key Components </h2>
+<h2 > 🗝 Components </h2>
 <h2> 1. HTML Structure </h2>
 <p> The HTML file (index.html) contains the main structure of the application, including: </p>
 
@@ -23,7 +23,7 @@
 * Handling checked items with strikethrough and moving them to the bottom of the list </p> <br>
 
 
-<h2> User Manual </h2>
+<h2>📒 User Manual </h2>
 <h3> Features </h3>
 <h4> 1. User Authentication: </h4>
 <p> * Users can log in or register using their username and password. </p>
@@ -39,7 +39,7 @@
 <p> * Users can filter items by category and sort them by name, price, or store. </p> <br>
 
 
-<h2> How to Use the App </h2>
+<h2> How to Use the App 🤔 </h2>
 <h4> 1. Accessing the App: </h4> 
 <p> * Open the index.html file in a web browser. </p>
 
@@ -81,7 +81,7 @@
 <h4> Logging Out </h4>
 <p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p> <br>
 
-<h1> Screenshot: </h1>
+<h1> Screenshot: [◉°] </h1>
 
 <table>
 	<thead>
@@ -97,13 +97,13 @@
 	</thead>
 	<tr>
 		<td>
-			<img src= "login.png" height=350 width=200>
+			<img src= "login.png" height=350 width=220>
 		</td>
 		<td>
-			<img src= "list.png" height=350 width=200>
+			<img src= "list.png" height=350 width=220>
 		</td>
                 <td>
-			<img src= "checked.png" height=350 width=200>
+			<img src= "checked.png" height=350 width=220>
 		</td>
 	</tr>
 	<thead>
@@ -119,13 +119,13 @@
 	</thead>
 	<tr>
 		<td>
-			<img src= "add-item.png" height=350 width=200>
+			<img src= "add-item.png" height=350 width=220>
 		</td>
 		<td>
-			<img src= "edit-item.png" height=350 width=200>
+			<img src= "edit-item.png" height=350 width=220>
 		</td>
                 <td>
-			<img src= "search.png" height=350 width=200>
+			<img src= "search.png" height=350 width=220>
 		</td>
 	</tr>
 	<thead>
@@ -138,10 +138,10 @@
 	</thead>
 	<tr>
 		<td>
-			<img src= "category.png" height=130 width=200>
+			<img src= "category.png" height=130 width=220>
 		</td>
 		<td>
-			<img src= "sort.png" height=130 width=200>
+			<img src= "sort.png" height=130 width=220>
 		</td>
 	</tr>
 </table>
