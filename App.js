@@ -82,6 +82,12 @@ const addItemModal = document.getElementById("addItemModal");
 const addBtn = document.getElementById("add-item-button");
 
 addBtn.onclick = function() {
+    if (!currentUser) {
+        alert('Please log in to add items to your grocery list.');
+        showAuth(); // Show the authentication section
+        return; // Prevent opening the modal
+    }
+    
     editingItemId = null; // Reset editing ID when opening the modal for adding
     addItemModal.style.display = "block";
 }

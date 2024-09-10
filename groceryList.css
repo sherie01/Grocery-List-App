@@ -133,9 +133,8 @@
 }
 
 .checkbox {
-   box-shadow: #218838;
+   float: right;
 }
-
 #list {
    list-style-type: none;
    padding: 0;
@@ -183,7 +182,7 @@ li .product-quantity {
 }
 
 li button {
-   margin: 4px;
+   margin: 5px;
    padding: 5px 10px; 
    width: 80%; 
    max-width: 100px; 
