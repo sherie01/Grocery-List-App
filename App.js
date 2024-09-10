@@ -3,6 +3,33 @@ let currentUser = null;
 let groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
 let editingItemId = null; // To track the item being edited
 
+// Function to check login state
+function checkLoginState() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        currentUser = users.find(u => u.username === username);
+        if (currentUser) {
+            // User is logged in
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('grocery-list').style.display = 'block';
+            loadGroceryList();
+        } else {
+            // No valid user found
+            showAuth();
+        }
+    } else {
+        // No username found in localStorage
+        showAuth();
+    }
+}
+
+// Show authentication UI
+function showAuth() {
+    document.getElementById('auth').style.display = 'block';
+    document.getElementById('grocery-list').style.display = 'none';
+    document.getElementById('register').style.display = 'none'; // Hide register if it's open
+}
+
 // Authentication
 document.getElementById('auth-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -12,6 +39,7 @@ document.getElementById('auth-form').addEventListener('submit', function (e) {
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
         currentUser = user;
+        localStorage.setItem('username', username); // Store username in localStorage
         document.getElementById('auth').style.display = 'none';
         document.getElementById('grocery-list').style.display = 'block';
         loadGroceryList();
@@ -92,7 +120,9 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
             quantity,
             store,
             category,
-            image: reader.result // Store Base64 string
+            image: reader.result, // Store Base64 string
+
+            checked: false // Initialize checked property
         };
 
         groceryItems.push(item);
@@ -151,7 +181,7 @@ document.getElementById('edit-item-form').addEventListener('submit', function (e
 // Load Grocery List
 function loadGroceryList() {
     const list = document.getElementById('list');
-    list.innerHTML = '';
+    list.innerHTML = ''; // Clear existing items
 
     // Get filter and sort values
     const filterValue = document.getElementById('filter-category').value;
@@ -171,46 +201,38 @@ function loadGroceryList() {
         filteredItems.sort((a, b) => a.store.localeCompare(b.store));
     }
 
-    // Display items
-    filteredItems.forEach(item => {
+    // Separate checked and unchecked items
+    const checkedItems = filteredItems.filter(item => item.checked);
+    const uncheckedItems = filteredItems.filter(item => !item.checked);
+
+    // Display unchecked items first
+    [...uncheckedItems, ...checkedItems].forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
-                <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})">
+                <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})" ${item.checked ? 'checked' : ''}>
                 ${item.image ? `<img src="${item.image}" alt="${item.productName}" style="max-width: 100px; max-height: 100px;">` : ''} <br>
-                <strong class="item-name" id="name-${item.id}">${item.productName}</strong><br>
-                <span class="item-price" id="price-${item.id}">Price: ₱${item.price}</span><br>
-                <span class="item-store" id="store-${item.id}">Store: ${item.store}</span><br>
-                <span class="item-quantity" id="quantity-${item.id}">Quantity: ${item.quantity}</span><br>
+                <strong class="item-name" id="name-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">${item.productName}</strong><br>
+                <span class="item-price" id="price-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Price: ₱${item.price}</span><br>
+                <span class="item-store" id="store-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Store: ${item.store}</span><br>
+                <span class="item-quantity" id="quantity-${item.id}" style="${item.checked ? 'text-decoration: line-through;' : ''}">Quantity: ${item.quantity}</span><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
         `;
-
-        list.appendChild(li);
+        list.appendChild(li); // Append item to the list
     });
 }
 
-// Toggle Strike Through
+// Toggle Strike Through and Update Checked Status
 function toggleStrikeThrough(checkbox, id) {
-    const nameElement = document.getElementById(`name-${id}`);
-    const priceElement = document.getElementById(`price-${id}`);
-    const storeElement = document.getElementById(`store-${id}`);
-    const quantityElement = document.getElementById(`quantity-${id}`);
+    // Find the item and update its checked status
+    const item = groceryItems.find(item => item.id === id);
+    item.checked = checkbox.checked; // Update the checked status
 
-    if (checkbox.checked) {
-        nameElement.style.textDecoration = "line-through";
-        priceElement.style.textDecoration = "line-through";
-        storeElement.style.textDecoration = "line-through";
-        quantityElement.style.textDecoration = "line-through";
-    } else {
-        nameElement.style.textDecoration = "none";
-        priceElement.style.textDecoration = "none";
-        storeElement.style.textDecoration = "none";
-        quantityElement.style.textDecoration = "none";
-    }
+    // Refresh the grocery list to reflect changes
+    loadGroceryList();
 }
-
 
 // Remove Item
 function removeItem(id) {
@@ -252,12 +274,17 @@ document.getElementById('search-bar').addEventListener('input', function() {
         const li = document.createElement('li');
         li.innerHTML = `
             <div>
-                <input type="checkbox" class="item-check" id="check-${item.id}">
+                <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})" ${item.checked ? 'checked' : ''}>
+
                 ${item.image ? `<img src="${item.image}" alt="${item.productName}" style="max-width: 100px; max-height: 100px;">` : ''} <br>
-                <strong class="item-name">${item.productName}</strong><br>
-                <span class="item-price">Price: ₱${item.price}</span><br>
-                <span class="item-store">Store: ${item.store}</span><br>
-                <span class="item-quantity">Quantity: ${item.quantity}</span><br>
+
+                <strong class="item-name" style="${item.checked ? 'text-decoration: line-through;' : ''}">${item.productName}</strong><br>
+
+                <span class="item-price" style="${item.checked ? 'text-decoration: line-through;' : ''}">Price: ₱${item.price}</span><br>
+
+                <span class="item-store" style="${item.checked ? 'text-decoration: line-through;' : ''}">Store: ${item.store}</span><br>
+
+                <span class="item-quantity" style="${item.checked ? 'text-decoration: line-through;' : ''}">Quantity: ${item.quantity}</span><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
@@ -270,6 +297,17 @@ document.getElementById('search-bar').addEventListener('input', function() {
 document.getElementById('filter-category').addEventListener('change', loadGroceryList);
 document.getElementById('sort-category').addEventListener('change', loadGroceryList);
 
+// Logout Functionality
+function logout() {
+    // Clear user session
+    currentUser = null;
+    localStorage.removeItem('username'); // Remove username from localStorage
+
+    // Update UI
+    document.getElementById('grocery-list').style.display = 'none';
+    showAuth(); // Show the authentication section
+}
+
 // Close modal when clicking outside
 window.onclick = function(event) {
     if (event.target == addItemModal) {
@@ -278,3 +316,6 @@ window.onclick = function(event) {
         closeEditItemModal();
     }
 };
+
+// Load Grocery List on page load
+document.addEventListener('DOMContentLoaded', checkLoginState);
