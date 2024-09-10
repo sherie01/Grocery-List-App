@@ -1,9 +1,9 @@
-let users = JSON.parse(localStorage.getItem('users')) || [];
+let users = JSON.parse(localStorage.getItem('users')) || []; //localStorage object allows you to save key/value pairs in the browser.
 let currentUser = null;
 let groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
 let editingItemId = null; // To track the item being edited
 
-// Function to check login state
+// Function to check login state Checks if a username is stored in localStorage. If found, it sets currentUser and displays the grocery list; otherwise, it shows the authentication form.
 function checkLoginState() {
     const username = localStorage.getItem('username');
     if (username) {
@@ -23,7 +23,7 @@ function checkLoginState() {
     }
 }
 
-// Show authentication UI
+// Show authentication UI, Displays the login form and hides the grocery list and registration form.
 function showAuth() {
     document.getElementById('auth').style.display = 'block';
     document.getElementById('grocery-list').style.display = 'none';
@@ -77,6 +77,47 @@ document.getElementById('register-form').addEventListener('submit', function (e)
     document.getElementById('auth').style.display = 'block';
 });
 
+// Grocery List Management for Adding Item
+document.getElementById('add-item-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const productName = document.getElementById('product-name').value;
+    const brand = document.getElementById('brand').value;
+    const price = document.getElementById('price').value;
+    const weight = document.getElementById('weight').value;
+    const quantity = document.getElementById('quantity').value;
+    const store = document.getElementById('store').value;
+    const category = document.getElementById('category').value;
+    const image = document.getElementById('image').files[0];
+
+    const reader = new FileReader();
+    reader.onloadend = function () {
+        const item = {
+            id: Date.now(), // New ID for new items
+            productName,
+            brand,
+            price,
+            weight,
+            quantity,
+            store,
+            category,
+            image: reader.result, // Store Base64 string
+            checked: false // Initialize checked property
+        };
+
+        groceryItems.push(item);
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
+        loadGroceryList();
+        closeAddItemModal(); // Hide modal after adding
+        document.getElementById('add-item-form').reset(); // Reset the form after adding
+    };
+
+    if (image) {
+        reader.readAsDataURL(image); // Convert to Base64
+    } else {
+        alert('Please select an image.');
+    }
+});
+
 // Add Item Modal
 const addItemModal = document.getElementById("addItemModal");
 const addBtn = document.getElementById("add-item-button");
@@ -102,47 +143,6 @@ function closeEditItemModal() {
     document.getElementById('edit-item-form').reset(); // Reset the form
     document.getElementById('editItemModal').style.display = "none";
 }
-
-// Grocery List Management for Adding Item
-document.getElementById('add-item-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const productName = document.getElementById('product-name').value;
-    const brand = document.getElementById('brand').value;
-    const price = document.getElementById('price').value;
-    const weight = document.getElementById('weight').value;
-    const quantity = document.getElementById('quantity').value;
-    const store = document.getElementById('store').value;
-    const category = document.getElementById('category').value;
-    const image = document.getElementById('image').files[0];
-
-    const reader = new FileReader();
-    reader.onloadend = function () {
-        const item = {
-            id: Date.now(), // New ID for new items
-            productName,
-            brand,
-            price: parseFloat(price), // Ensure price is a number
-            weight,
-            quantity,
-            store,
-            category,
-            image: reader.result, // Store Base64 string
-            checked: false // Initialize checked property
-        };
-
-        groceryItems.push(item);
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
-        loadGroceryList();
-        closeAddItemModal(); // Hide modal after adding
-        document.getElementById('add-item-form').reset(); // Reset the form after adding
-    };
-
-    if (image) {
-        reader.readAsDataURL(image); // Convert to Base64
-    } else {
-        alert('Please select an image.');
-    }
-});
 
 // Grocery List Management for Editing Item
 document.getElementById('edit-item-form').addEventListener('submit', function (e) {
