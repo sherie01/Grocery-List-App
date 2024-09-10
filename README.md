@@ -23,7 +23,7 @@
 * Handling checked items with strikethrough and moving them to the bottom of the list </p> <br>
 
 
-<h2> User Manual </h2>h2
+<h2> User Manual </h2>
 <h3> Features </h3>
 <h2> User Authentication: </h2>
 <p> * Users can log in or register using their username and password. </p>
@@ -39,7 +39,10 @@
 <p> * Users can filter items by category and sort them by name, price, or store. </p>
 
 
-1. Accessing the App: </h2> <p> Open the index.html file in a web browser. <br> </p>
+<h2> How to Use the App </h2>
+<h2> 1. Accessing the App: </h2> 
+<p> * Open the index.html file in a web browser. </p>
+
 <h2> 2. Registering a New User: </h2>
 <p> * Click on "Switch to Register". <br> 
 * Fill in the username and password fields. <br> 
