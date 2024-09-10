@@ -86,13 +86,13 @@
 <table>
 	<thead>
 		<td>
-			<b>Login</b>
+			<b> Login </b>
 		</td>
 		<td>
-			<b>Grocery List</b>
+			<b> Grocery List </b>
 		</td>
-    <td>
-			<b>Check Box</b>
+                <td>
+			<b> Check Box </b>
 		</td>
 	</thead>
 	<tr>
@@ -100,32 +100,48 @@
 			<img src= "login.png" height=350 width=200>
 		</td>
 		<td>
-			<img src= "login.png" height=350 width=200>
+			<img src= "list.png" height=350 width=200>
 		</td>
-    <td>
-			<img src= "login.png" height=350 width=200>
+                <td>
+			<img src= "checked.png" height=350 width=200>
 		</td>
 	</tr>
 	<thead>
 		<td>
-			<b>Login</b>
+			<b> Modal (add-item) </b>
 		</td>
 		<td>
-			<b>Grocery List</b>
+			<b> Modal (edit-item) </b>
 		</td>
-    <td>
-			<b>Check Box</b>
+                <td>
+			<b> Search Bar </b>
 		</td>
 	</thead>
 	<tr>
 		<td>
-			<img src= "login.png" height=350 width=200>
+			<img src= "add-item.png" height=350 width=200>
 		</td>
 		<td>
-			<img src= "login.png" height=350 width=200>
+			<img src= "edit-item.png" height=350 width=200>
 		</td>
-    <td>
-			<img src= "login.png" height=350 width=200>
+                <td>
+			<img src= "search.png" height=350 width=200>
+		</td>
+	</tr>
+	<thead>
+		<td>
+			<b> Category </b>
+		</td>
+		<td>
+			<b> Sorting </b>
+		</td>
+	</thead>
+	<tr>
+		<td>
+			<img src= "category.png" height=130 width=200>
+		</td>
+		<td>
+			<img src= "sort.png" height=130 width=200>
 		</td>
 	</tr>
 </table>
