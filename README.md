@@ -82,4 +82,4 @@
 <p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p> <br>
 
 <h1> Screenshot: </h1>
-<img src= "milk.png" alt="" height=200 width=200>
+<img src= "login.png" height=350 width=200>
