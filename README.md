@@ -25,55 +25,55 @@
 
 <h2> User Manual </h2>
 <h3> Features </h3>
-<h2> User Authentication: </h2>
+<h4> 1. User Authentication: </h4>
 <p> * Users can log in or register using their username and password. </p>
 
-<h2> Grocery List Management: </h2>
+<h4> 2. Grocery List Management: </h4>
 <p> * Users can add grocery items with details such as product name, brand, price, and quantity. <br>
 * Users can edit or remove items from their grocery list. </p>
 
-<h2> Checked Items: </h2>
+<h4> 3. Checked Items: </h4>
 <p> * Users can check off items that they have purchased. Checked items will have a strikethrough effect and will be moved to the bottom of the list for easy reference. </p>
 
-<h2> Filtering and Sorting: </h2>
+<h4> 4. Filtering and Sorting: </h4>
 <p> * Users can filter items by category and sort them by name, price, or store. </p> <br>
 
 
 <h2> How to Use the App </h2>
-<h2> 1. Accessing the App: </h2> 
+<h4> 1. Accessing the App: </h4> 
 <p> * Open the index.html file in a web browser. </p>
 
-<h2> 2. Registering a New User: </h2>
+<h4> 2. Registering a New User: </h4>
 <p> * Click on "Switch to Register". <br> 
 * Fill in the username and password fields. <br> 
-* Click "Register". If the username already exists, an alert will notify you. </p> <br>
+* Click "Register". If the username already exists, an alert will notify you. </p> 
 
-<h2> 3. Logging In: </h2>
+<h4> 3. Logging In: </h4>
 <p> * Enter your username and password. </p>
-<p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p> <br> <br>
+<p> * Click "Login". If the credentials are valid, you will be redirected to the grocery list. </p> <br>
 
 <h2> Using the Grocery List </h2>
-<h2> 1. Adding Items: </h2>
+<h4> 1. Adding Items: </h4>
 <p> * Click on the "Add Item" button. <br>
 * Fill in the product details (name, brand, price, weight, quantity, store, category). <br>
 * Optionally, upload an image. <br>
 * Click "Add Item" to save it to your grocery list. </p>
 
-<h2> 2. Editing Items: </h2>
+<h4> 2. Editing Items: </h4>
 <p> * Click the "Edit" button next to the item you wish to modify. <br>
 * Update the desired fields and click "Save Changes". </p>
 
-<h2> 3. Removing Items: </h2>
+<h4> 3. Removing Items: </h4>
 <p> * Click the "Remove" button next to the item you wish to delete. The item will be removed from your list. </p>
 
-<h2> 4. Filtering and Sorting:  </h2>
+<h4> 4. Filtering and Sorting:  </h4>
 <p> * Use the filters to view specific categories (e.g., Fruit, Vegetable, Dairy). <br>
 * Sort items by name, price, or store. </p>
 
-<h2> 5. Searching for Items: </h2>
+<h4> 5. Searching for Items: </h4>
 <p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
 
-<h2> Logging Out </h2>
+<h4> Logging Out </h4>
 <p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p>
 
 <h2>Conclusion</h2>
