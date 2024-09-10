@@ -1,4 +1,4 @@
-# Simple Grocery-List-App
+# Grocery-List-App
 <h2> Overview </h2>
 <p> The Grocery List App is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
@@ -72,6 +72,8 @@
 
 <h4> 5. Checked Items:  </h4>
 <p> * To check off an item, click the checkbox. The item will be strikethrough and moved to the bottom of the list. </p>
+
+
 
 <h4> 6. Searching for Items: </h4>
 <p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
