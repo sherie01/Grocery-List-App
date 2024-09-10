@@ -70,7 +70,10 @@
 <p> * Use the filters to view specific categories (e.g., Fruit, Vegetable, Dairy). <br>
 * Sort items by name, price, or store. </p>
 
-<h4> 5. Searching for Items: </h4>
+<h4> 5. Checked Items:  </h4>
+<p> * To check off an item, click the checkbox. The item will be strikethrough and moved to the bottom of the list. </p>
+
+<h4> 6. Searching for Items: </h4>
 <p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
 
 <h4> Logging Out </h4>
