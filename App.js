@@ -121,7 +121,6 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
             store,
             category,
             image: reader.result, // Store Base64 string
-
             checked: false // Initialize checked property
         };
 
@@ -174,7 +173,24 @@ document.getElementById('edit-item-form').addEventListener('submit', function (e
     if (image) {
         reader.readAsDataURL(image); // Convert to Base64
     } else {
-        closeEditItemModal(); // Hide modal without saving changes
+        // If no new image, keep the existing data and close the modal
+        const existingItem = groceryItems.find(i => i.id === editingItemId);
+        const item = {
+            id: editingItemId,
+            productName,
+            brand,
+            price: parseFloat(price),
+            weight,
+            quantity,
+            store,
+            category,
+            image: existingItem.image // Keep the old image
+        };
+
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem);
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems));
+        loadGroceryList();
+        closeEditItemModal(); // Hide modal after editing
     }
 });
 
@@ -275,15 +291,10 @@ document.getElementById('search-bar').addEventListener('input', function() {
         li.innerHTML = `
             <div>
                 <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})" ${item.checked ? 'checked' : ''}>
-
                 ${item.image ? `<img src="${item.image}" alt="${item.productName}" style="max-width: 100px; max-height: 100px;">` : ''} <br>
-
                 <strong class="item-name" style="${item.checked ? 'text-decoration: line-through;' : ''}">${item.productName}</strong><br>
-
                 <span class="item-price" style="${item.checked ? 'text-decoration: line-through;' : ''}">Price: ₱${item.price}</span><br>
-
                 <span class="item-store" style="${item.checked ? 'text-decoration: line-through;' : ''}">Store: ${item.store}</span><br>
-
                 <span class="item-quantity" style="${item.checked ? 'text-decoration: line-through;' : ''}">Quantity: ${item.quantity}</span><br>
             </div>
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
