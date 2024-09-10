@@ -1,4 +1,4 @@
-# Grocery-List-App 📝💗
+# Grocery-List-App 📝💗 
 <h2> 👁️verview </h2>
 <p> The Grocery List App is a web/mobile application that allows users to manage their grocery items through a simple and intuitive interface. Users can register, log in, add, edit, remove items, and filter or search through their grocery list. </p>
 
