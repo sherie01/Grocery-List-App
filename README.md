@@ -36,7 +36,7 @@
 <p> * Users can check off items that they have purchased. Checked items will have a strikethrough effect and will be moved to the bottom of the list for easy reference. </p>
 
 <h2> Filtering and Sorting: </h2>
-<p> * Users can filter items by category and sort them by name, price, or store. </p>
+<p> * Users can filter items by category and sort them by name, price, or store. </p> <br>
 
 
 <h2> How to Use the App </h2>
