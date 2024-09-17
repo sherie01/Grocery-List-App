@@ -1,319 +1,298 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
- }
- 
- body {
-    background-color: rgba(11, 230, 11, 0.671);
-    padding: 10px;
- }
- 
- .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 5px;
- }
- 
- img {
-    max-width: 100%; /* Make the image responsive */
-    height: auto; /* Maintain aspect ratio */
-    filter: drop-shadow(1px 1px 5px rgba(48, 46, 46, 0.307));
- }
-
- .img {
-   text-align: center;
-}
- 
- h1 {
-    color: rgb(0, 0, 0);
-    font-size: 2.5rem; /* Responsive font size */
-    text-align: center;
-    padding: 50px;
- }
- 
- h2 {
-    color: rgb(0, 0, 0);
-    font-family: italic;
-    font-size: 1.5rem; /* Responsive font size */
-    text-align: center;
-    padding-bottom: 10px;
- }
-
- /* Modal Styles */
- .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
- }
- 
- .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 100%; /* Could be more or less, depending on screen size */
-    max-width: 300px;
- }
- 
- .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
- }
- 
- .close:hover,
- .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
- }
- 
- form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- }
- 
- input,
- select,
- button {
-    margin: 5px 0;
-    padding: 10px;
-    width: 100%; 
-    max-width: 300px; 
- }
- 
- /* Responsive Add Item Button */
- #add-item-button {
-    padding: 10px;
-    width: 100%; 
-    max-width: 300px; 
-    margin: 20px auto; 
-    display: block; 
-    background-color: #28a745; 
-    color: white;
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-}
-
- #add-item-button:hover {
-    background-color: #218838; 
-}
-
-
- button {
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
- }
- 
- button:hover {
-    background-color: #218838;
- }
- 
- /* -- UL -- */
- ul {
-   list-style-type: none;
-   padding: 0; 
-   display: grid; 
-   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
-   gap: 25px; /* Space between grid items */
-}
-
- .checkbox {
-   float: right;
-}
-
- #list {
-   list-style-type: none;
+   margin: 0;
    padding: 0;
+   box-sizing: border-box; /* Ensures padding and borders are included in element's total width and height */
 }
 
- #list li {
-   margin: 10px 0;
-   padding: 10px;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   display: flex;
-   align-items: center;
+body {
+   background-color: rgba(11, 230, 11, 0.671); /* Light green background */
+   padding: 0px;
 }
 
- .item-check {
-   margin-right: 10px;
+.container {
+   max-width: 50rem; /* Maximum width of the container */
+   margin: auto; /* Center the container */
+   padding: 20px; 
 }
 
- li input[type="checkbox"] {
+img {
+   max-width: 100%; /* Make the image responsive */
+   height: auto; /* Maintain aspect ratio */
+   filter: drop-shadow(1px 1px 5px rgba(48, 46, 46, 0.307)); /* Add shadow effect to images */
+}
+
+.img {
+   text-align: center; /* Center-align image container */
+}
+
+h1 {
+   color: rgb(0, 0, 0); /* Black color for headings */
+   font-size: 2.5rem; /* Responsive font size */
+   text-align: center; /* Center align text */
+   padding: 50px; /* Padding around the heading */
+}
+
+h2 {
+   color: rgb(0, 0, 0);
+   font-family: italic; /* Italic font style */
+   font-size: 1.5rem; /* Responsive font size */
+   text-align: center; /* Center align text */
+   padding-bottom: 10px; /* Space below the heading */
+}
+
+/* Modal Styles */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+   background-color: #fefefe; /* White background for modal content */
+   margin: 15% auto; /* Center modal vertically and horizontally */
+   padding: 20px; /* Padding inside modal */
+   border: 1px solid #888; /* Border around modal */
+   width: 100%; /* Full width */
+   max-width: 300px; /* Maximum width */
+}
+
+.close {
+   color: #aaa; /* Color for close button */
+   float: right; /* Float to the right */
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+   color: black; /* Change color on hover/focus */
+   text-decoration: none; /* Remove underline */
+   cursor: pointer; /* Pointer cursor on hover */
+}
+
+form {
+   display: flex; /* Use flexbox for layout */
+   flex-direction: column; /* Stack items vertically */
+   align-items: center; /* Center items horizontally */
+}
+
+input,
+select,
+button {
+   margin: 5px 0; /* Space between form elements */
+   padding: 10px; /* Padding inside inputs */
+   width: 100%; /* Full width */
+   max-width: 300px; /* Maximum width */
+}
+
+/* Responsive Add Item Button */
+#add-item-button {
+   padding: 10px; /* Padding inside button */
+   width: 100%; /* Full width */
+   max-width: 250px; /* Maximum width */
+   margin: 20px auto; /* Center button */
+   display: block; /* Block-level element */
+   background-color: #28a745; /* Green background */
+   color: white; /* White text */
+   border: none; /* No border */
+   border-radius: 5px; /* Rounded corners */
+   cursor: pointer; /* Pointer cursor on hover */
+}
+
+#add-item-button:hover {
+   background-color: #218838; /* Darker green on hover */
+}
+
+button {
+   cursor: pointer; /* Pointer cursor on hover */
+   background-color: #28a745; /* Green background */
+   color: white; /* White text */
+   border: none; /* No border */
+   border-radius: 5px; /* Rounded corners */
+}
+
+button:hover {
+   background-color: #218838; /* Darker green on hover */
+}
+
+/* List Styles */
+ul {
+   list-style-type: none; /* No bullet points */
+   padding: 0; /* No padding */
+   display: grid; /* Use grid layout */
+   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+   gap: 15px; /* Space between grid items */
+}
+
+#list {
+   list-style-type: none; /* No bullet points */
+   padding: 0; /* No padding */
+}
+
+#list li {
+   margin: 10px 0; /* Margin around list items */
+   padding: 10px; /* Padding inside list items */
+   border: 1px solid #ccc; /* Light gray border */
+   border-radius: 1rem; /* Rounded corners */
+   display: flex; /* Use flexbox for layout */
+   align-items: center; /* Center items vertically */
+}
+
+.item-check {
    margin-right: 10px; /* Space between checkbox and text */
 }
 
- li {
-   background: #ffffff9f;
+li input[type="checkbox"] {
+   margin-right: 10px; /* Space between checkbox and text */
+}
+
+/* Styles for each list item */
+li {
+   background: #ffffff9f; /* Semi-transparent white background */
    padding: 20px; 
    display: flex;
    flex-direction: column; /* Stack contents vertically */
    align-items: center; /* Center items horizontally */
-   text-align: center; 
-   border-radius: 5px; 
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+   text-align: center; /* Center align text */
+   border-radius: 5px; /* Rounded corners */
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
    transition: transform 0.2s; /* Smooth transition for hover effect */
 }
 
- li img {
-   max-width: 100px; /* Set a fixed width for images */
+li img {
+   max-width: 100px; /* Fixed width for images */
    height: 100px; 
    margin-bottom: 10px; /* Space between image and text */
 }
 
- li .product-name,
- li .product-price,
- li .product-quantity {
+li .product-name,
+li .product-price,
+li .product-quantity {
    margin: 5px 0; /* Uniform margin for text elements */
 }
 
- li button {
-   margin: 5px;
+li button {
+   margin: 5px; /* Margin around buttons */
    padding: 5px 10px; 
-   width: 80%; 
-   max-width: 100px; 
+   width: 80%; /* Width of buttons */
+   max-width: 100px; /* Maximum width */
 }
 
- li:hover {
+li:hover {
    transform: scale(1.02); /* Scale up on hover */
 }
- 
 
- /* --- CATEGORY/SORTING --- */
- .sorting {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-top: 40px;
-    margin-bottom: 2rem;   
-}
- 
- #filter-category {
-    margin: 5px 0;
-    padding: 10px;
-    width: 100%; 
-    max-width: 300px;
-}
- 
- #sort-category {
-    margin: 5px 0;
-    padding: 10px;
-    width: 100%; 
-    max-width: 300px; 
-}
- 
- /* --- SEARCH BAR --- */
- .search-container {
-   position: relative;
-   width: 100%; 
-   max-width: 300px; 
+/* --- CATEGORY/SORTING --- */
+.sorting {
+   align-items: center; /* Center items */
+   display: flex; /* Use flexbox for layout */
+   flex-direction: column; /* Stack items vertically */
+   padding-top: 20px; /* Space above sorting section */
+   margin-bottom: 15px; /* Space below sorting section */
 }
 
- #search-bar {
-   margin: 20px 0;
-   padding: 10px 40px 10px 10px; /* Add padding to accommodate the icon */
-   width: 100%; 
-   max-width: 300px; 
+#filter-category,
+#sort-category {
+   margin: 5px 0; /* Space around select elements */
+   padding: 10px; /* Padding inside select elements */
+   width: 100%; /* Full width */
+   max-width: 250px; /* Maximum width */
 }
 
- .search-icon {
-   position: absolute;
-   right: 10px; /* Position the icon inside the input */
-   top: 50%; /* Center the icon vertically */
+/* --- SEARCH BAR --- */
+.search-container {
+   position: relative; /* Position relative for positioning the icon */
+   width: 100%; /* Full width */
+   max-width: 250px; /* Maximum width */
+}
+
+#search-bar {
+   margin: 20px 0; /* Space around search bar */
+   padding: 10px 40px 10px 10px; /* Padding to accommodate the icon */
+   width: 100%; /* Full width */
+   max-width: 250px; /* Maximum width */
+}
+
+.search-icon {
+   position: absolute; /* Position absolute within the container */
+   right: 10px; /* Align to the right */
+   top: 50%; /* Center vertically */
    transform: translateY(-50%); /* Adjust for vertical centering */
-   color: gray; 
+   color: gray; /* Gray color for the icon */
    pointer-events: none; /* Prevent clicks on the icon */
 }
 
+.delete {
+   background: #dc3545; /* Red background for delete button */
+   border: none; /* No border */
+   color: white; /* White text */
+   padding: 5px 5px; /* Padding inside button */
+   border-radius: 5px; /* Rounded corners */
+   cursor: pointer; /* Pointer cursor on hover */
+   max-width: 60px; /* Maximum width */
+}
 
- .delete {
-    background: #dc3545;
-    border: none;
-    color: white;
-    padding: 2px 2px;
-    border-radius: 5px;
-    cursor: pointer;
-    max-width: 60px;
+.delete:hover {
+   background: #c82333; /* Darker red on hover */
 }
- 
- .delete:hover {
-    background: #c82333;
-    color: rgb(255, 255, 255);
+
+.edit {
+   background: rgba(0, 128, 0, 0.66); /* Green background for edit button */
+   border: none; /* No border */
+   color: white; /* White text */
+   padding: 5px 5px; /* Padding inside button */
+   border-radius: 5px; /* Rounded corners */
+   cursor: pointer; /* Pointer cursor on hover */
+   max-width: 60px; /* Maximum width */
 }
- 
- .edit {
-    background: rgba(0, 128, 0, 0.66);
-    border: none;
-    color: white;
-    padding: 2px 2px;
-    border-radius: 5px;
-    cursor: pointer;
-    max-width: 60px;
+
+.edit:hover {
+   background: rgb(27, 203, 27); /* Brighter green on hover */
 }
- 
- .edit:hover {
-    background: rgb(27, 203, 27);
-    color: black;
-}
- 
- #logout-button {
+
+#logout-button {
    display: block; /* Make it a block element */
    margin: 20px auto; /* Center it with auto margins */
    padding: 10px; 
-   background-color: #dc3545; 
-   color: white; 
-   border: none; 
-   border-radius: 5px; 
-   cursor: pointer; 
-   max-width: 200px; 
+   background-color: #dc3545; /* Red background */
+   color: white; /* White text */
+   border: none; /* No border */
+   border-radius: 5px; /* Rounded corners */
+   cursor: pointer; /* Pointer cursor on hover */
+   max-width: 200px; /* Maximum width */
 }
 
- #logout-button:hover {
-   background-color: #c82333; 
+#logout-button:hover {
+   background-color: #c82333; /* Darker red on hover */
 }
 
- /* Responsive Design */
- @media (max-width: 600px) {
-    h1 {
+/* Responsive Design */
+@media (max-width: 600px) {
+   h1 {
        font-size: 2rem; /* Smaller font size for mobile */
-    }
- 
-    h2 {
+   }
+
+   h2 {
        font-size: 1.25rem; /* Smaller font size for mobile */
-    }
- 
-    input,
-    select,
-    button {
-       max-width: 100%; /* Full width on mobile */
-    }
- 
-    #app {
-       padding: 10px; /* Less padding on mobile */
-    }
+   }
 
-    ul {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
-    }
+   input,
+   select,
+   button {
+       max-width: 80%; /* Full width on mobile */
+   }
 
-    li {
-        padding: 15px; /* Increase padding on smaller screens */
-    }
+   ul {
+       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
+   }
+
+   li {
+       padding: 15px; /* Increase padding on smaller screens */
+   }
 }
- 

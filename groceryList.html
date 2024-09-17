@@ -9,9 +9,12 @@
 </head>
 <body>
     <div class="container">
+        <!-- Logo Section -->
         <div class="img">
             <img src="grocery.png" alt="logo">
         </div>
+        
+        <!-- Authentication Section -->
         <div id="auth">
             <h2 id="auth-title">Login</h2>
             <form id="auth-form">
@@ -21,6 +24,8 @@
                 <button type="button" id="toggle-auth">Switch to Register</button>
             </form>
         </div>
+        
+        <!-- Registration Section -->
         <div id="register" style="display: none;">
             <h2>Register</h2>
             <form id="register-form">
@@ -31,6 +36,7 @@
             </form>
         </div>
 
+        <!-- Grocery List Section -->
         <div id="grocery-list">
             <h2>Your Grocery List</h2>
             <button id="add-item-button">Add Item</button>
@@ -81,6 +87,7 @@
                 </div>
             </div>
 
+            <!-- Sorting and Filtering Section -->
             <div class="sorting">
                 <label for="filter-category">Filter by Category:</label>
                 <select id="filter-category">
