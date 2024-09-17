@@ -79,7 +79,11 @@
 <p> * Use the search bar to find items by name. As you type, the list will update to show matching items. </p>
 
 <h4> Logging Out </h4>
-<p> To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p> <br>
+<p> * To log out, simply refresh the page or close the browser. You will need to log in again to access your grocery list. </p>
+
+<h4> Troubleshooting </h4>
+<p> * Invalid Login: Ensure that the username and password are correct. <br>
+* Username Already Exists: Choose a different username during registration. </p> 
 
 <h1> Screenshot: [◉°] </h1>
 
