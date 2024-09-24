@@ -1,103 +1,104 @@
-// localStorage object allows you to save key/value pairs in the browser.
-let users = JSON.parse(localStorage.getItem('users')) || []; // Retrieve users from localStorage or initialize as empty array
-let currentUser = null; // To store the currently logged-in user
-let groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || []; // Retrieve grocery items or initialize as empty array
-let editingItemId = null; // To track the item being edited
+// Save and get data from the browser using localStorage
+let users = JSON.parse(localStorage.getItem('users')) || []; // Get users from localStorage or start with an empty list
+let currentUser = null; // Holds the user who is currently logged in
+let groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || []; // Get grocery items from localStorage or start with an empty list
+let editingItemId = null; // Keeps track of which item is being edited
 
-// Function to check login state
-// Checks if a username is stored in localStorage. If found, it sets currentUser and displays the grocery list; otherwise, it shows the authentication form.
+// Check if the user is logged in
+// Looks for a saved username. If found, sets the current user and shows the grocery list. If not, shows the login form.
 function checkLoginState() {
     const username = localStorage.getItem('username');
     if (username) {
-        currentUser = users.find(u => u.username === username); // Find the user by username
+        currentUser = users.find(u => u.username === username); // Find the user with the saved username
         if (currentUser) {
             // User is logged in
-            document.getElementById('auth').style.display = 'none'; // Hide authentication UI
-            document.getElementById('grocery-list').style.display = 'block'; // Show grocery list
-            loadGroceryList(); // Load the grocery list
+            document.getElementById('auth').style.display = 'none'; // Hide the login form
+            document.getElementById('grocery-list').style.display = 'block'; // Show the grocery list
+            loadGroceryList(); // Load the grocery items
         } else {
-            // No valid user found
-            showAuth(); // Show authentication UI
+            // No matching user found
+            showAuth(); // Show the login form
         }
     } else {
-        // No username found in localStorage
-        showAuth(); // Show authentication UI
+        // No username saved
+        showAuth(); // Show the login form
     }
 }
 
-// Show authentication UI
+// Show the login form
 // Displays the login form and hides the grocery list and registration form.
 function showAuth() {
-    document.getElementById('auth').style.display = 'block'; // Show authentication UI
-    document.getElementById('grocery-list').style.display = 'none'; // Hide grocery list
-    document.getElementById('register').style.display = 'none'; // Hide register if it's open
+    document.getElementById('auth').style.display = 'block'; // Show the login form
+    document.getElementById('grocery-list').style.display = 'none'; // Hide the grocery list
+    document.getElementById('register').style.display = 'none'; // Hide the registration form
 }
 
-// Authentication
+// Handle login form submission
 document.getElementById('auth-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-    const username = document.getElementById('username').value; // Get username input
-    const password = document.getElementById('password').value; // Get password input
+    e.preventDefault(); // Stop the form from submitting normally
+    const username = document.getElementById('username').value; // Get the entered username
+    const password = document.getElementById('password').value; // Get the entered password
 
-    const user = users.find(u => u.username === username && u.password === password); // Find user by username and password
+    const user = users.find(u => u.username === username && u.password === password); // Find a user with matching username and password
     if (user) {
-        currentUser = user; // Set current user
-        localStorage.setItem('username', username); // Store username in localStorage
-        document.getElementById('auth').style.display = 'none'; // Hide authentication UI
-        document.getElementById('grocery-list').style.display = 'block'; // Show grocery list
-        loadGroceryList(); // Load the grocery list
+        currentUser = user; // Set the logged-in user
+        localStorage.setItem('username', username); // Save the username in localStorage
+        document.getElementById('auth').style.display = 'none'; // Hide the login form
+        document.getElementById('grocery-list').style.display = 'block'; // Show the grocery list
+        loadGroceryList(); // Load the grocery items
     } else {
-        alert('Invalid user'); // Show error for invalid credentials
+        alert('Invalid user'); // Show an error if login fails
     }
 });
 
-// Toggle between login and register forms
+// Switch to the registration form
 document.getElementById('toggle-auth').addEventListener('click', function () {
-    document.getElementById('auth').style.display = 'none'; // Hide authentication UI
-    document.getElementById('register').style.display = 'block'; // Show registration UI
+    document.getElementById('auth').style.display = 'none'; // Hide the login form
+    document.getElementById('register').style.display = 'block'; // Show the registration form
 });
 
+// Switch back to the login form from registration
 document.getElementById('toggle-auths').addEventListener('click', function () {
-    document.getElementById('auth').style.display = 'block'; // Show authentication UI
-    document.getElementById('register').style.display = 'none'; // Hide registration UI
+    document.getElementById('auth').style.display = 'block'; // Show the login form
+    document.getElementById('register').style.display = 'none'; // Hide the registration form
 });
 
-// Registration
+// Handle registration form submission
 document.getElementById('register-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-    const username = document.getElementById('new-username').value; // Get new username input
-    const password = document.getElementById('new-password').value; // Get new password input
+    e.preventDefault(); // Stop the form from submitting normally
+    const username = document.getElementById('new-username').value; // Get the new username
+    const password = document.getElementById('new-password').value; // Get the new password
 
-    // Check if username already exists
+    // Check if the username is already taken
     if (users.find(u => u.username === username)) {
-        alert('Username already exists'); // Alert if username is taken
-        return; // Exit function
+        alert('Username already exists'); // Show an error if username is taken
+        return; // Exit the function
     }
 
-    // Add new user to users array
-    users.push({ username, password }); // Store new user
-    localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
-    alert('Registration successful! You can now log in.'); // Show success message
-    document.getElementById('register').style.display = 'none'; // Hide registration UI
-    document.getElementById('auth').style.display = 'block'; // Show authentication UI
+    // Add the new user
+    users.push({ username, password }); // Add the new user to the list
+    localStorage.setItem('users', JSON.stringify(users)); // Save the updated users list
+    alert('Registration successful! You can now log in.'); // Inform the user of success
+    document.getElementById('register').style.display = 'none'; // Hide the registration form
+    document.getElementById('auth').style.display = 'block'; // Show the login form
 });
 
-// Grocery List Management for Adding Item
+// Handle adding a new grocery item
 document.getElementById('add-item-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-    const productName = document.getElementById('product-name').value; // Get product name
-    const brand = document.getElementById('brand').value; // Get brand
-    const price = document.getElementById('price').value; // Get price
-    const weight = document.getElementById('weight').value; // Get weight
-    const quantity = document.getElementById('quantity').value; // Get quantity
-    const store = document.getElementById('store').value; // Get store
-    const category = document.getElementById('category').value; // Get category
-    const image = document.getElementById('image').files[0]; // Get image file
+    e.preventDefault(); // Stop the form from submitting normally
+    const productName = document.getElementById('product-name').value; // Get the product name
+    const brand = document.getElementById('brand').value; // Get the brand
+    const price = document.getElementById('price').value; // Get the price
+    const weight = document.getElementById('weight').value; // Get the weight
+    const quantity = document.getElementById('quantity').value; // Get the quantity
+    const store = document.getElementById('store').value; // Get the store name
+    const category = document.getElementById('category').value; // Get the category
+    const image = document.getElementById('image').files[0]; // Get the image file
 
     const reader = new FileReader();
     reader.onloadend = function () {
         const item = {
-            id: Date.now(), // New ID for new items
+            id: Date.now(), // Unique ID based on current time
             productName,
             brand,
             price,
@@ -105,65 +106,66 @@ document.getElementById('add-item-form').addEventListener('submit', function (e)
             quantity,
             store,
             category,
-            image: reader.result, // Store Base64 string of the image
-            checked: false // Initialize checked property
+            image: reader.result, // Save the image as a base64 string
+            checked: false // Mark as not checked
         };
 
-        groceryItems.push(item); // Add item to grocery items
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save grocery items to localStorage
-        loadGroceryList(); // Load updated grocery list
-        closeAddItemModal(); // Hide modal after adding
-        document.getElementById('add-item-form').reset(); // Reset the form after adding
+        groceryItems.push(item); // Add the new item to the list
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save the updated list
+        loadGroceryList(); // Refresh the grocery list
+        closeAddItemModal(); // Close the add item window
+        document.getElementById('add-item-form').reset(); // Clear the form
     };
 
     if (image) {
-        reader.readAsDataURL(image); // Convert to Base64
+        reader.readAsDataURL(image); // Convert the image to base64
     } else {
-        alert('Please select an image.'); // Alert if no image is selected
+        alert('Please select an image.'); // Ask the user to select an image
     }
 });
 
-// Add Item Modal
-const addItemModal = document.getElementById("addItemModal"); // Reference to the add item modal
-const addBtn = document.getElementById("add-item-button"); // Reference to the add item button
+// References to the add item modal and button
+const addItemModal = document.getElementById("addItemModal"); // The add item popup
+const addBtn = document.getElementById("add-item-button"); // The button to open the add item popup
 
+// Open the add item popup
 addBtn.onclick = function() {
     if (!currentUser) {
-        alert('Please log in to add items to your grocery list.'); // Alert if user is not logged in
-        showAuth(); // Show the authentication section
-        return; // Prevent opening the modal
+        alert('Please log in to add items to your grocery list.'); // Remind the user to log in
+        showAuth(); // Show the login form
+        return; // Don't open the popup
     }
     
-    editingItemId = null; // Reset editing ID when opening the modal for adding
-    addItemModal.style.display = "block"; // Show add item modal
+    editingItemId = null; // Clear any editing ID
+    addItemModal.style.display = "block"; // Show the add item popup
 }
 
-// Close Add Item Modal
+// Close the add item popup
 function closeAddItemModal() {
-    addItemModal.style.display = "none"; // Hide add item modal
+    addItemModal.style.display = "none"; // Hide the add item popup
 }
 
-// Close Edit Item Modal
+// Close the edit item popup
 function closeEditItemModal() {
-    document.getElementById('edit-item-form').reset(); // Reset the form
-    document.getElementById('editItemModal').style.display = "none"; // Hide edit item modal
+    document.getElementById('edit-item-form').reset(); // Clear the edit form
+    document.getElementById('editItemModal').style.display = "none"; // Hide the edit item popup
 }
 
-// Load Grocery List
+// Show the grocery list
 function loadGroceryList() {
-    const list = document.getElementById('list'); // Reference to the grocery list
-    list.innerHTML = ''; // Clear existing items
+    const list = document.getElementById('list'); // The list container
+    list.innerHTML = ''; // Clear the current list
 
-    // Get filter and sort values
-    const filterValue = document.getElementById('filter-category').value; // Get selected filter
-    const sortValue = document.getElementById('sort-category').value; // Get selected sort option
+    // Get filter and sort choices
+    const filterValue = document.getElementById('filter-category').value; // Selected filter
+    const sortValue = document.getElementById('sort-category').value; // Selected sort option
 
-    // Filter items based on selected category
+    // Filter the items by category
     let filteredItems = groceryItems.filter(item => {
-        return filterValue === 'All' || item.category === filterValue; // Show all or filter by category
+        return filterValue === 'All' || item.category === filterValue; // Show all or specific category
     });
 
-    // Sort items based on selected criteria
+    // Sort the items based on the chosen option
     if (sortValue === 'name') {
         filteredItems.sort((a, b) => a.productName.localeCompare(b.productName)); // Sort by name
     } else if (sortValue === 'price') {
@@ -172,13 +174,13 @@ function loadGroceryList() {
         filteredItems.sort((a, b) => a.store.localeCompare(b.store)); // Sort by store
     }
 
-    // Separate checked and unchecked items
-    const checkedItems = filteredItems.filter(item => item.checked); // Get checked items
-    const uncheckedItems = filteredItems.filter(item => !item.checked); // Get unchecked items
+    // Separate items that are checked and not checked
+    const checkedItems = filteredItems.filter(item => item.checked); // Items that are checked
+    const uncheckedItems = filteredItems.filter(item => !item.checked); // Items that are not checked
 
-    // Display unchecked items first
+    // Show unchecked items first, then checked items
     [...uncheckedItems, ...checkedItems].forEach(item => {
-        const li = document.createElement('li'); // Create list item element
+        const li = document.createElement('li'); // Create a list item
         li.innerHTML = `
             <div>
                 <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})" ${item.checked ? 'checked' : ''}>
@@ -191,41 +193,41 @@ function loadGroceryList() {
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
         `;
-        list.appendChild(li); // Append item to the list
+        list.appendChild(li); // Add the item to the list
     });
 }
 
-// Toggle Strike Through and Update Checked Status
+// Mark items as done or not done
 function toggleStrikeThrough(checkbox, id) {
-    // Find the item and update its checked status
+    // Find the item and update its status
     const item = groceryItems.find(item => item.id === id);
     if (item) {
-        item.checked = checkbox.checked; // Update the checked status
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save changes to localStorage
+        item.checked = checkbox.checked; // Set the checked status
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save the changes
     }
 
-    // Refresh the grocery list to reflect changes
-    loadGroceryList(); // Reload the grocery list
+    // Update the list display
+    loadGroceryList(); // Refresh the grocery list
 }
 
-// Remove Item
+// Delete an item from the list
 function removeItem(id) {
-    groceryItems = groceryItems.filter(item => item.id !== id); // Remove item from grocery items
-    localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save updated grocery items to localStorage
-    loadGroceryList(); // Reload the grocery list
+    groceryItems = groceryItems.filter(item => item.id !== id); // Remove the item from the list
+    localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save the updated list
+    loadGroceryList(); // Refresh the grocery list
 }
 
-// Grocery List Management for Editing Item
+// Handle editing an existing grocery item
 document.getElementById('edit-item-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission
-    const productName = document.getElementById('edit-product-name').value; // Get edited product name
-    const brand = document.getElementById('edit-brand').value; // Get edited brand
-    const price = document.getElementById('edit-price').value; // Get edited price
-    const weight = document.getElementById('edit-weight').value; // Get edited weight
-    const quantity = document.getElementById('edit-quantity').value; // Get edited quantity
-    const store = document.getElementById('edit-store').value; // Get edited store
-    const category = document.getElementById('edit-category').value; // Get edited category
-    const image = document.getElementById('edit-image').files[0]; // Get edited image file
+    e.preventDefault(); // Stop the form from submitting normally
+    const productName = document.getElementById('edit-product-name').value; // Get the new product name
+    const brand = document.getElementById('edit-brand').value; // Get the new brand
+    const price = document.getElementById('edit-price').value; // Get the new price
+    const weight = document.getElementById('edit-weight').value; // Get the new weight
+    const quantity = document.getElementById('edit-quantity').value; // Get the new quantity
+    const store = document.getElementById('edit-store').value; // Get the new store
+    const category = document.getElementById('edit-category').value; // Get the new category
+    const image = document.getElementById('edit-image').files[0]; // Get the new image
 
     const reader = new FileReader();
     reader.onloadend = function () {
@@ -233,25 +235,25 @@ document.getElementById('edit-item-form').addEventListener('submit', function (e
             id: editingItemId, // Keep the same ID
             productName,
             brand,
-            price: parseFloat(price), // Ensure price is a number
+            price: parseFloat(price), // Make sure price is a number
             weight,
             quantity,
             store,
             category,
-            image: image ? reader.result : groceryItems.find(i => i.id === editingItemId).image // Retain old image if new one is not uploaded
+            image: image ? reader.result : groceryItems.find(i => i.id === editingItemId).image // Use new image or keep the old one
         };
 
-        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem); // Update the grocery item
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save updated grocery items to localStorage
-        loadGroceryList(); // Reload the grocery list
-        closeEditItemModal(); // Hide modal after editing
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem); // Update the item in the list
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save the changes
+        loadGroceryList(); // Refresh the grocery list
+        closeEditItemModal(); // Close the edit popup
     };
 
     if (image) {
-        reader.readAsDataURL(image); // Convert to Base64
+        reader.readAsDataURL(image); // Convert the new image to base64
     } else {
-        // If no new image, keep the existing data and close the modal
-        const existingItem = groceryItems.find(i => i.id === editingItemId); // Get existing item
+        // If no new image, keep the existing one and update other details
+        const existingItem = groceryItems.find(i => i.id === editingItemId); // Get the current item
         const item = {
             id: editingItemId,
             productName,
@@ -264,19 +266,19 @@ document.getElementById('edit-item-form').addEventListener('submit', function (e
             image: existingItem.image // Keep the old image
         };
 
-        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem); // Update the grocery item
-        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save updated grocery items to localStorage
-        loadGroceryList(); // Reload the grocery list
-        closeEditItemModal(); // Hide modal after editing
+        groceryItems = groceryItems.map(groceryItem => groceryItem.id === editingItemId ? item : groceryItem); // Update the item in the list
+        localStorage.setItem('groceryItems', JSON.stringify(groceryItems)); // Save the changes
+        loadGroceryList(); // Refresh the grocery list
+        closeEditItemModal(); // Close the edit popup
     }
 });
 
-// Edit Item
+// Open the edit item popup with the item's details
 function editItem(id) {
     const item = groceryItems.find(item => item.id === id); // Find the item to edit
-    if (!item) return; // Exit if item not found
+    if (!item) return; // Do nothing if the item isn't found
 
-    // Populate the edit modal with the item's data
+    // Fill the edit form with the item's current details
     document.getElementById('edit-product-name').value = item.productName;
     document.getElementById('edit-brand').value = item.brand;
     document.getElementById('edit-price').value = item.price;
@@ -285,24 +287,24 @@ function editItem(id) {
     document.getElementById('edit-store').value = item.store;
     document.getElementById('edit-category').value = item.category;
 
-    // Set the editing item ID
+    // Remember which item is being edited
     editingItemId = id;
 
-    // Open the edit modal
-    document.getElementById('editItemModal').style.display = "block"; // Show edit item modal
+    // Show the edit popup
+    document.getElementById('editItemModal').style.display = "block"; // Show the edit item popup
 }
 
-// Search Functionality
+// Search through the grocery items
 document.getElementById('search-bar').addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase(); // Get search term
-    const list = document.getElementById('list'); // Reference to the grocery list
-    list.innerHTML = ''; // Clear existing items
+    const searchTerm = this.value.toLowerCase(); // Get the search text
+    const list = document.getElementById('list'); // The list container
+    list.innerHTML = ''; // Clear the current list
 
-    // Filter items based on search term
+    // Find items that match the search term
     const filteredItems = groceryItems.filter(item => item.productName.toLowerCase().includes(searchTerm));
 
     filteredItems.forEach(item => {
-        const li = document.createElement('li'); // Create list item element
+        const li = document.createElement('li'); // Create a list item
         li.innerHTML = `
             <div>
                 <input type="checkbox" class="item-check" id="check-${item.id}" onclick="toggleStrikeThrough(this, ${item.id})" ${item.checked ? 'checked' : ''}>
@@ -315,33 +317,32 @@ document.getElementById('search-bar').addEventListener('input', function() {
             <button class="edit" onclick="editItem(${item.id})">Edit</button>
             <button class="delete" onclick="removeItem(${item.id})">Remove</button>
         `;
-        list.appendChild(li); // Append filtered item to the list
+        list.appendChild(li); // Add the matching item to the list
     });
 });
 
-// Filter and Sorting Event Listeners
-document.getElementById('filter-category').addEventListener('change', loadGroceryList); // Reload list on filter change
-document.getElementById('sort-category').addEventListener('change', loadGroceryList); // Reload list on sort change
+// Reload the grocery list when filters or sorting options change
+document.getElementById('filter-category').addEventListener('change', loadGroceryList); // When filter changes
+document.getElementById('sort-category').addEventListener('change', loadGroceryList); // When sort option changes
 
-// Logout Functionality
+// Log the user out
 function logout() {
-    // Clear user session
-    currentUser = null; // Reset current user
-    localStorage.removeItem('username'); // Remove username from localStorage
+    currentUser = null; // Clear the current user
+    localStorage.removeItem('username'); // Remove the saved username
 
-    // Update UI
-    document.getElementById('grocery-list').style.display = 'none'; // Hide grocery list
-    showAuth(); // Show authentication UI
+    // Update the display
+    document.getElementById('grocery-list').style.display = 'none'; // Hide the grocery list
+    showAuth(); // Show the login form
 }
 
-// Close modal when clicking outside
+// Close popups when clicking outside of them
 window.onclick = function(event) {
     if (event.target == addItemModal) {
-        closeAddItemModal();
+        closeAddItemModal(); // Close the add item popup
     } else if (event.target == document.getElementById('editItemModal')) {
-        closeEditItemModal();
+        closeEditItemModal(); // Close the edit item popup
     }
 };
 
-// Load Grocery List on page load
-document.addEventListener('DOMContentLoaded', checkLoginState);
+// Check if the user is logged in when the page loads
+document.addEventListener('DOMContentLoaded', checkLoginState); 

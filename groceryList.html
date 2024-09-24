@@ -1,119 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery List App</title>
+    <!-- Link to external stylesheets and fonts -->
     <link rel="stylesheet" href="groceryList.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon -->
 </head>
 <body>
     <div class="container">
-        <!-- Logo Section -->
-        <div class="img">
-            <img src="grocery.png" alt="logo">
-        </div>
+        <header>
+            <!-- Logo for the grocery list app -->
+            <div class="img">
+                <img src="grocery.png" alt="Grocery List Logo">
+            </div>
+        </header>
         
-        <!-- Authentication Section -->
-        <div id="auth">
-            <h2 id="auth-title">Login</h2>
-            <form id="auth-form">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <button type="button" id="toggle-auth">Switch to Register</button>
-            </form>
-        </div>
-        
-        <!-- Registration Section -->
-        <div id="register" style="display: none;">
-            <h2>Register</h2>
-            <form id="register-form">
-                <input type="text" id="new-username" placeholder="Username" required>
-                <input type="password" id="new-password" placeholder="Password" required>
-                <button type="submit">Register</button>
-                <button type="button" id="toggle-auths">Switch to Login</button>
-            </form>
-        </div>
-
-        <!-- Grocery List Section -->
-        <div id="grocery-list">
-            <h2>Your Grocery List</h2>
-            <button id="add-item-button">Add Item</button>
-
-            <!-- Add Item Modal -->
-            <div id="addItemModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeAddItemModal()">&times;</span>
-                    <h2>Add Grocery Item</h2>
-                    <form id="add-item-form">
-                        <input type="text" id="product-name" placeholder="Product Name" required>
-                        <input type="text" id="brand" placeholder="Brand" required>
-                        <input type="number" id="price" placeholder="Price" required>
-                        <input type="text" id="weight" placeholder="Weight/Volume" required>
-                        <input type="number" id="quantity" placeholder="Quantity" required>
-                        <input type="text" id="store" placeholder="Store" required>
-                        <input type="file" id="image" accept="image/*">
-                        <select id="category">
-                            <option value="Fruit">Fruit</option>
-                            <option value="Vegetable">Vegetable</option>
-                            <option value="Dairy">Dairy</option>
-                        </select>
-                        <button type="submit">Add Item</button>
+        <main>
+            <!-- Authentication Section -->
+            <section id="auth">
+                <div class="form-container">
+                    <h2>Login</h2>
+                    <form id="auth-form" aria-label="Login Form">
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit">Login</button>
+                        <p class="toggle-text">Don't have an account? <span id="toggle-auth">Register</span></p>
                     </form>
                 </div>
-            </div>
-
-            <!-- Edit Item Modal -->
-            <div id="editItemModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeEditItemModal()">&times;</span>
-                    <h2>Edit Grocery Item</h2>
-                    <form id="edit-item-form">
-                        <input type="text" id="edit-product-name" placeholder="Product Name" required>
-                        <input type="text" id="edit-brand" placeholder="Brand" required>
-                        <input type="number" id="edit-price" placeholder="Price" required>
-                        <input type="text" id="edit-weight" placeholder="Weight/Volume" required>
-                        <input type="number" id="edit-quantity" placeholder="Quantity" required>
-                        <input type="text" id="edit-store" placeholder="Store" required>
-                        <input type="file" id="edit-image" accept="image/*">
-                        <select id="edit-category">
-                            <option value="Fruit">Fruit</option>
-                            <option value="Vegetable">Vegetable</option>
-                            <option value="Dairy">Dairy</option>
-                        </select>
-                        <button type="submit">Save Changes</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Sorting and Filtering Section -->
-            <div class="sorting">
-                <label for="filter-category">Filter by Category:</label>
-                <select id="filter-category">
-                    <option value="All">All</option>
-                    <option value="Fruit">Fruit</option>
-                    <option value="Vegetable">Vegetable</option>
-                    <option value="Dairy">Dairy</option>
-                </select> <br>
-                
-                <label for="sort-category">Sort by:</label>
-                <select id="sort-category">
-                    <option value="name">Product Name</option>
-                    <option value="price">Price</option>
-                    <option value="store">Store</option>
-                </select>
-                
-                <div class="search-container">
-                    <input type="text" id="search-bar" placeholder="Search by name...">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
-            </div>
+            </section>
             
-            <ul id="list"><!-- Grocery items will be dynamically added here --></ul>
-            <button id="logout-button" onclick="logout()">Logout</button>
-        </div>
+            <!-- Registration Section -->
+            <section id="register" style="display: none;">
+                <div class="form-container">
+                    <h2>Register</h2>
+                    <form id="register-form" aria-label="Registration Form">
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="new-username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="new-password" placeholder="Password" required>
+                        </div>
+                        <button type="submit">Register</button>
+                        <p class="toggle-text">Already have an account? <span id="toggle-auths">Login</span></p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Grocery List Section -->
+            <section id="grocery-list" style="display:none">
+                <h2>Your Grocery List</h2>
+                <button id="add-item-button">Add Item</button>
+
+                <!-- Add Item Modal -->
+                <div id="addItemModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeAddItemModal()">×</span>
+                        <h2>Add Grocery Item</h2>
+                        <form id="add-item-form">
+                            <input type="text" id="product-name" placeholder="Product Name" required>
+                            <input type="text" id="brand" placeholder="Brand" required>
+                            <input type="number" id="price" placeholder="Price" required>
+                            <input type="text" id="weight" placeholder="Weight/Volume" required>
+                            <input type="number" id="quantity" placeholder="Quantity" required>
+                            <input type="text" id="store" placeholder="Store" required>
+                            <input type="file" id="image" accept="image/*">
+                            <select id="category">
+                                <option value="Fruit">Fruit</option>
+                                <option value="Vegetable">Vegetable</option>
+                                <option value="Dairy">Dairy</option>
+                            </select>
+                            <button type="submit">Add Item</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Edit Item Modal -->
+                <div id="editItemModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeEditItemModal()">×</span>
+                        <h2>Edit Grocery Item</h2>
+                        <form id="edit-item-form">
+                            <input type="text" id="edit-product-name" placeholder="Product Name" required>
+                            <input type="text" id="edit-brand" placeholder="Brand" required>
+                            <input type="number" id="edit-price" placeholder="Price" required>
+                            <input type="text" id="edit-weight" placeholder="Weight/Volume" required>
+                            <input type="number" id="edit-quantity" placeholder="Quantity" required>
+                            <input type="text" id="edit-store" placeholder="Store" required>
+                            <input type="file" id="edit-image" accept="image/*">
+                            <select id="edit-category">
+                                <option value="Fruit">Fruit</option>
+                                <option value="Vegetable">Vegetable</option>
+                                <option value="Dairy">Dairy</option>
+                            </select>
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sorting and Filtering Section -->
+                <div class="sorting">
+                    <label for="filter-category">Filter by Category:</label>
+                    <select id="filter-category">
+                        <option value="All">All</option>
+                        <option value="Fruit">Fruit</option>
+                        <option value="Vegetable">Vegetable</option>
+                        <option value="Dairy">Dairy</option>
+                    </select>
+                    
+                    <label for="sort-category">Sort by:</label>
+                    <select id="sort-category">
+                        <option value="name">Product Name</option>
+                        <option value="price">Price</option>
+                        <option value="store">Store</option>
+                    </select>
+                    
+                    <div class="search-container">
+                        <input type="text" id="search-bar" placeholder="Search by name...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+                
+                <!-- Grocery List -->
+                <ul id="list"><!-- Grocery items will be dynamically added here --></ul>
+                <button id="logout-button" onclick="logout()">Logout</button>
+            </section>
+        </main>
     </div>
+    <!-- Script for the app functionality -->
     <script src="app.js"></script>
 </body>
 </html>
